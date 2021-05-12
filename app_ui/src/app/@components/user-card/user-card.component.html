@@ -1,0 +1,14 @@
+<section class="user_card">
+    <header>
+        <img [src]="profil.avatar" [alt]="'avatar '+ profil.firstName ">
+        <span *ngIf="profil.isAdmin" class="fa fa-user-shield"></span>
+        <span *ngIf="!profil.isAdmin" class="fa fa-user"></span>
+    </header>
+    <div class="detail">
+        <h3>{{profil.firstName}} {{profil.lastName}}</h3>
+        <p>Inscrit <span>{{profil.createdAt|mdate}}</span></p>
+    </div>
+    <div class="action">
+        <!-- <button class="btn btn-sm"><span class="fa fa-eye"></span></button> -->
+    </div>
+</section>

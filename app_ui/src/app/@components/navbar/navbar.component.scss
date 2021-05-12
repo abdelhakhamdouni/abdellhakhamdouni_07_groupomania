@@ -1,0 +1,28 @@
+.navbar{
+    padding: 0;
+    padding: 0 6%;
+    background-color: #1e81d2;
+}
+.navbar-brand{
+    img{
+        width: 40px;
+        border-radius: 50%;
+    }
+}
+.navbar-nav{
+    margin: 0;
+    padding: 0;
+    .nav-item{
+        text-align: center;
+        margin-left: 2em;
+        height: 100%;
+        padding: 0;
+        &.active{
+            border-bottom: 3px solid rgb(255, 255, 255);
+        }
+        
+        .nav-link{
+            font-size: .9em;
+        }
+    }
+}

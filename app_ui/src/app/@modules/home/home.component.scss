@@ -1,0 +1,40 @@
+.home{
+    padding-top: 1em;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .posts_list{
+        width: 100%;
+    }
+    header{
+        background-color: #fff;
+        box-shadow: 0 0 3px rgb(212, 211, 211);
+        margin-bottom: 1em;
+        padding: .5em 1em 0;
+        h3{
+            color: #1e81d2;
+            text-align: center;
+        }
+    }
+}
+
+.add-new-post{
+    display: flex;
+    margin-bottom: 1em;
+    input{
+        flex: 1;
+        width: 100%;
+        border: 1px solid lightgray;
+        border-radius: 1em;
+        padding-left: 1em;
+    }
+    
+    img{
+        width: 35px;
+        height: 35px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: .5em;
+    }
+}
