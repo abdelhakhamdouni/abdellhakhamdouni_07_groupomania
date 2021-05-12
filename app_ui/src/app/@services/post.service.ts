@@ -1,3 +1,4 @@
+import { UserApiService } from './user-api.service';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -17,40 +18,47 @@ export class PostService {
 
   posts: Post[]
 
-  constructor(protected http: HttpClient, private store: Store<AppState>) { }
+  constructor(protected http: HttpClient, private store: Store<AppState>, private userService: UserApiService,) { }
 
-  public getPost():void {
-   this.http.get(this.url)
-   .subscribe(
-      posts => this.store.dispatch(new PostAction.LoadPosts(posts as Post[]))
-   )
+  public getPost(): void {
+    this.http.get(this.url)
+      .subscribe(
+        posts => this.store.dispatch(new PostAction.LoadPosts(posts as Post[]))
+      )
   }
 
-  getPostService():Observable<Post[]>{
+  getPostService(): Observable<Post[]> {
     return new Observable(observer => {
       this.getPost()
-     this.posts ?  observer.next(this.posts) : observer.error('no posts')
+      this.posts ? observer.next(this.posts) : observer.error('no posts')
     })
   }
 
 
-  public savePost(formData: FormData): Observable<any>{
+  public savePost(formData: FormData): Observable<any> {
     console.log("save post service")
     return this.http.post(this.url, formData)
-    .pipe(
-      res=> {
-        console.log(res)
-        return res
-      }
-    )
+      .pipe(
+        res => {
+          console.log(res)
+          return res
+        }
+      )
   }
 
-  public deletePost(id?:number): Observable<any>{
+  public deletePost(id?: number): Observable<any> {
     return this.http.delete(this.url + id)
   }
 
-}
-function tipe(): import("rxjs").OperatorFunction<void, unknown> {
-  throw new Error('Function not implemented.');
+  public likePost(id: number, like): void {
+    let UserId:number
+    this.userService.getUser().subscribe(user=> UserId = user.id)
+    let PostId: number = id
+
+    this.http.post(`${this.url}/like/${id}`, {
+      UserId, PostId, like
+    }).subscribe(res=> console.log(res))
+  }
+
 }
 

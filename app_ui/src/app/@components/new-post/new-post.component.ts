@@ -48,8 +48,8 @@ export class NewPostComponent implements OnInit {
     }
   }
   postgroup = new FormGroup({
-    title: new FormControl(),
-    content: new FormControl()
+    title: new FormControl(''),
+    content: new FormControl('')
   })
   
   deleteImage(){
@@ -58,7 +58,6 @@ export class NewPostComponent implements OnInit {
   }
   
   savePostForm(event){
-
     event.stopPropagation() 
     event.preventDefault()
 
@@ -86,6 +85,9 @@ export class NewPostComponent implements OnInit {
       .subscribe(res=> {
         if(res){{
           this.postService.getPost()
+          this.deleteImage()
+          let description = this.postgroup.controls.content.setValue('')
+          let title = this.postgroup.controls.title.setValue('')
           this.closeModal()
         }}
       })
@@ -93,6 +95,7 @@ export class NewPostComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.deleteImage()
     this.userService.getUser().subscribe(user=> this.userLogged = user)
     this.closeModal()
   }

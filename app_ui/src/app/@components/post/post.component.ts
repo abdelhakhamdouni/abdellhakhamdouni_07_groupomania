@@ -1,5 +1,7 @@
+import { UserApiService } from './../../@services/user-api.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { PostService } from 'src/app/@services/post.service';
+import User from 'src/app/models/User';
 
 @Component({
   selector: 'app-post',
@@ -11,10 +13,15 @@ export class PostComponent implements OnInit {
   @Input() post;
   
   postId: number;
-  constructor(private postService: PostService) { }
+  like: number
+  user: User
+
+  constructor(private postService: PostService, private userService: UserApiService) { }
   
   ngOnInit(): void {
     this.postId = this.post.id
+    this.userService.getUser().subscribe(user=> this.user = user)
+    this.like = this.post.Likes.length > 0 ? this.post.Likes.UserId == this.user.id ? 1 : 0 : 0
   }
 
   toggleMenu(classe: string){
@@ -37,4 +44,10 @@ export class PostComponent implements OnInit {
     _post.classList.add('hide')
   }
   signalerPost(id){}
+  
+  likePost(id,like){
+    this.postService.likePost(id, like)
+  }
+  
+  
 }
