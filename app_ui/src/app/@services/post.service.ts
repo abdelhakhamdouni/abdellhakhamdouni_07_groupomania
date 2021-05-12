@@ -1,5 +1,4 @@
 import { UserApiService } from './user-api.service';
-import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -34,6 +33,10 @@ export class PostService {
     })
   }
 
+  getOnePostById(id): Observable<any>{
+    return this.http.get(this.url+id).pipe(post => post )
+  }
+
 
   public savePost(formData: FormData): Observable<any> {
     console.log("save post service")
@@ -55,9 +58,9 @@ export class PostService {
     this.userService.getUser().subscribe(user=> UserId = user.id)
     let PostId: number = id
 
-    this.http.post(`${this.url}/like/${id}`, {
+    this.http.post(`${this.url}like/${id}`, {
       UserId, PostId, like
-    }).subscribe(res=> console.log(res))
+    }).subscribe(res => this.getPost())
   }
 
 }

@@ -112,6 +112,9 @@
                 color: rgb(136, 136, 136);
                 font-size: 1.2em;
             }
+            .liked{
+                color: var(--primary) !important;
+            }
         }
         .post__footer-comment{
             padding: 1em 0;

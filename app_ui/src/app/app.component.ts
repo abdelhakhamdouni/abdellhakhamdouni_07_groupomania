@@ -12,7 +12,6 @@ export class AppComponent {
 
   title = 'grp-frontend';
   isUserLogged: boolean;
-  showFiller = false;
 
   ngOnInit(){
     this.authService.getLoggedUser().subscribe(bool => this.isUserLogged = bool)

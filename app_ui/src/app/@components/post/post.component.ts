@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UserApiService } from './../../@services/user-api.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { PostService } from 'src/app/@services/post.service';
@@ -13,22 +14,35 @@ export class PostComponent implements OnInit {
   @Input() post;
   
   postId: number;
-  like: number
+  like: number = 0
   user: User
+  liked:string
 
-  constructor(private postService: PostService, private userService: UserApiService) { }
+  constructor(private postService: PostService, private userService: UserApiService, private router: Router) { }
   
   ngOnInit(): void {
+    this.liked = ""
     this.postId = this.post.id
     this.userService.getUser().subscribe(user=> this.user = user)
-    this.like = this.post.Likes.length > 0 ? this.post.Likes.UserId == this.user.id ? 1 : 0 : 0
+    if(this.post.Likes.length > 0){
+      this.post.Likes.forEach(element => {
+        if(element.UserId == this.user.id) {
+          this.like = 1
+          this.liked = "liked"
+        }
+
+      });
+    }
+    console.log(this.like)
   }
 
   toggleMenu(classe: string){
     document.querySelector(`.${classe}`).classList.toggle('show')
   }
 
-  showPost(id){}
+  showPost(id){
+    this.router.navigateByUrl(`/publication/${id}`)
+  }
   showEditPostModal(id){}
   deletePost(id){
     this.postService.deletePost(id).subscribe(

@@ -8,6 +8,7 @@ import { HomeComponent } from './home.component';
 import { ProfileComponent } from 'src/app/@components/profile/profile.component';
 import { MdatePipe } from 'src/app/@pipes/mdate.pipe';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { PostPageComponent } from './post-page/post-page.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     ProfileComponent,
     MdatePipe,
     PostComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    PostPageComponent
   ],
   imports: [
     CommonModule,

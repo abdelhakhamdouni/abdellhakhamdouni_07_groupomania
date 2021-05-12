@@ -1,3 +1,4 @@
+import { PostPageComponent } from './post-page/post-page.component';
 import { ProfileComponent } from 'src/app/@components/profile/profile.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -5,6 +6,7 @@ import { HomeComponent } from './home.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
+  {path:'publication/:id', component: PostPageComponent},
   {path:'profile/:id', component: ProfileComponent}
 ];
 

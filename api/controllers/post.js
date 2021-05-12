@@ -5,6 +5,7 @@ const User = require('../models').User
 const Comment = require('../models').Comment
 const Likes = require('../models').Likes
 const formatUser = require('../utils/formatUser')
+const { Op } = require("sequelize");
 
 module.exports = {
 
@@ -100,7 +101,7 @@ module.exports = {
         Post.findOne({ where: { id }, include: [User, Comment,Likes] })
             .then(post => {
                     post.image = `${req.protocol}://${req.get('host')}/uploads/posts_image/${post.image}`
-                    post.User = formatUser(post.User)
+                    post.User = formatUser(post.User, req)
                     res.status(200).json(post)
             })
             .catch(err => {
@@ -160,4 +161,20 @@ module.exports = {
             .then(() => res.status(200).json("post supprimé"))
             .catch(err => res.status(500).json("le post n'as pas pu étre supprimé !", err))
     },
+
+    likePost: async (req, res, next)=>{
+        console.log(req.body)
+        let {UserId, PostId, like} = req.body
+        if(like == 0){
+            const _like = await Likes.create({UserId, PostId, like})
+            if(_like) res.status(201).json("ok")
+            else res.status(200).json({err: "impossible de créer le like"})
+
+        }else{
+            const _like = await Likes.findOne({where: {[Op.and]:[{UserId,PostId}]}})
+            const response = _like.destroy()
+            if(response)res.status(201).json("ok")
+            else res.status(200).json({err: "impossible de créer le like"})
+        }
+    }
 }

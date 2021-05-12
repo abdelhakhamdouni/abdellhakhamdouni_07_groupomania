@@ -1,3 +1,4 @@
+import { ApiInterceptorInterceptor } from './@interceptor/api-interceptor.interceptor';
 import { UserCardComponent } from './@components/user-card/user-card.component';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NewPostComponent } from './@components/new-post/new-post.component';
@@ -12,7 +13,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './@components/footer/footer.component';
 import { NavbarComponent } from './@components/navbar/navbar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthModule } from './@modules/auth/auth.module';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { StoreModule } from '@ngrx/store';
@@ -47,7 +48,7 @@ import { userReducers } from './@store/reducers/user.reducers';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
     
   ],
-  providers: [GuardGuard],
+  providers: [GuardGuard,{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
