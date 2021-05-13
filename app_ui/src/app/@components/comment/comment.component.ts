@@ -15,4 +15,8 @@ export class CommentComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  toggleMenu(classe: string) {
+    document.querySelector(`.${classe}`).classList.toggle('show')
+  }
+
 }

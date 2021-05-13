@@ -1,7 +1,7 @@
-<section class="user_card">
+<section class="user_card" [class]="profil.isAdmin ? 'admin': ''">
     <header>
-        <img [src]="profil.avatar" [alt]="'avatar '+ profil.firstName ">
-        <span *ngIf="profil.isAdmin" class="fa fa-user-shield"></span>
+        <img [src]="profil.avatar" [class]="profil.isAdmin ? 'admin': ''" [alt]="'avatar '+ profil.firstName ">
+        <span *ngIf="profil.isAdmin" class="fa fa-user-shield admin"></span>
         <span *ngIf="!profil.isAdmin" class="fa fa-user"></span>
     </header>
     <div class="detail">

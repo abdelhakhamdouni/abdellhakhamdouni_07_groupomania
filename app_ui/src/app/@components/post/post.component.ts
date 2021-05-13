@@ -19,6 +19,7 @@ export class PostComponent implements OnInit {
   like: number = 0
   user: User
   liked: string
+  commented:string
   post_hided: number[]
 
   constructor(private postService: PostService,
@@ -31,9 +32,10 @@ export class PostComponent implements OnInit {
 
     this.post_hided = localStorage.getItem('post_hided') ? JSON.parse(localStorage.getItem('post_hided')) : []
     this.liked = ""
+    this.commented =""
     this.postId = this.post.id
     this.userService.getUser().subscribe(user => this.user = user)
-
+    if(this.post.Comments.length > 0)this.commented = "commented"
     if (this.post.Likes.length > 0) {
       this.post.Likes.forEach(element => {
         if (element.UserId == this.user.id) {

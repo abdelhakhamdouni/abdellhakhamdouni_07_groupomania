@@ -29,7 +29,7 @@
                 <span [class]="'fas fa-thumbs-up ' + liked" (click)="likePost(post.id, like)" ></span> {{post.Likes.length}}
             </div>
             <div class="comment">
-                <span class="fa fa-comment-alt "></span> {{post.Comments.length}}
+                <span [class]="'fa fa-comment-alt '+commented "></span> {{post.Comments.length}}
             </div>
         </div>
         <div class="post__footer-comment" >

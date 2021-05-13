@@ -4,6 +4,7 @@
     width: 100%;
     padding: .5em;
     margin-bottom: .5em;
+    position: relative;
     .comment_image {
         img{
             width: 35px;
@@ -42,5 +43,44 @@
     &.child{
         width: 95% !important;
         margin-left: 5%;
+    }
+}
+
+.comment__header-action{
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    span{
+        cursor: pointer;
+    }
+    ul{
+        width: 15em;
+        display: none;
+        &.show{
+            position: absolute;
+            right: 1.5em;
+            top: 0em;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            list-style: none;
+            background-color: #fff;
+            border-radius: .2em;
+            box-shadow: 0 0 8px rgb(192, 192, 192);
+            padding: 0;
+            li{
+                display: flex;
+                padding: .5em;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                button{
+                    font-size: .7em;
+                }
+                &:hover{
+                    background-color: rgb(240, 240, 240);
+                }
+            }
+        }
     }
 }
