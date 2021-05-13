@@ -6,6 +6,7 @@ import Post from '../models/Post';
 import * as PostAction from '../@store/actions/post.actions'
 import { Store } from '@ngrx/store';
 import { AppState } from '../AppState';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -21,6 +22,12 @@ export class PostService {
 
   public getPost(): void {
     this.http.get(this.url)
+      .pipe(
+          map(
+              (posts:[]) => posts.filter(
+                (post:Post)=> ( JSON.parse(localStorage.getItem('post_hided')).indexOf(post.id) == -1 ))
+            )
+        )
       .subscribe(
         posts => this.store.dispatch(new PostAction.LoadPosts(posts as Post[]))
       )

@@ -1,4 +1,4 @@
-<article class="post" [class]="'post_parent_' + post.id" data-id={{post.id}}>
+<article class="post" [class]="'post_parent_' + post.id" [id]="post.id">
     <header class="post__header">
         <div class="post__header-details">
             <img src={{post.User.avatar}} alt="">
@@ -33,7 +33,9 @@
             </div>
         </div>
         <div class="post__footer-comment" >
-            <input type="text" placeholder="Ecrire un commentaire ..." name="comment" [id]="'post '+post.id">
+            <form [formGroup]="comment" (submit)="submitComment($event)">
+                <input formControlName="commentText" type="text" placeholder="Ecrire un commentaire ..." name="comment" [class]="'post_ '+post.id" [id]="'post_ '+post.id">
+            </form>
         </div>
     </footer>
 </article>

@@ -27,14 +27,7 @@ module.exports = {
                         model: User
                     }
                 })
-                if (posts) {
-                    //let formatedPosts = posts.map(post=>post.User.filter(key => key != password))
-                    res.status(200).json(posts)
-                }
-                else {
-                    console.log(error)
-                    res.status(500).json({ error: "POST_CREATED_ERROR" })
-                }
+                posts ? res.status(200).json(posts) : res.status(500).json({ error: "POST_CREATED_ERROR" })
             })
             .catch(err => {
                 console.log(err)
@@ -74,7 +67,7 @@ module.exports = {
      * @param {*} res 
      */
     getAllPosts: async (req, res) => {
-        let posts = await Post.findAll({ include: [User, Comment,Likes] })
+        let posts = await Post.findAll({ include: [User, Comment,Likes], order:[['updatedAt', 'DESC']] })
         if (posts) {
             if (posts.length === 0) res.status(200).json([])
             else{
@@ -126,7 +119,7 @@ module.exports = {
                 post.update(postData)
                     .then(async () => {
                         console.log('ok')
-                        let posts = await Post.findAll({include: [User, Comment,Likes]})
+                        let posts = await Post.findAll({include: [User, Comment,Likes], order:[['updatedAt', 'DESC']]})
                         if (posts) {
                             //let formatedPosts = posts.map(post=>post.User.filter(key => key != password))
                             res.status(200).json(posts)

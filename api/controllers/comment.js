@@ -106,8 +106,8 @@ module.exports = {
      * @param {*} next 
      */
     deleteComment: async (req,res,next)=>{
-        let postId = req.params.id
-        const comment = await Comment.findOne({where: {id: postId}})
+        let commentId = req.params.id
+        const comment = await Comment.findOne({where: {id: commentId}})
         await comment.destroy()
                 .then(()=> res.status(200).json("comment supprimé"))
                 .catch(err=> res.status(500).json("le comment n'as pas pu étre supprimé !", err))

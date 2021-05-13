@@ -21,7 +21,6 @@ export class UserApiService {
 
   getUsers():void{
     this.http.get(this.url).subscribe(users =>{
-      console.log(users)
       this.store.dispatch(new UserAction.LoadUsers(users as User[]))
     })
   }

@@ -15,10 +15,8 @@ export class ListUsersComponent implements OnInit {
   users: any
 
   ngOnInit(): void {
-    console.log("init user")
     this.userService.getUsers()
     this.users = this.store.select('user')
-    console.log(this.users)
   }
 
 

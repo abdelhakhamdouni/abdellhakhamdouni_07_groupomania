@@ -9,6 +9,7 @@ import { ProfileComponent } from 'src/app/@components/profile/profile.component'
 import { MdatePipe } from 'src/app/@pipes/mdate.pipe';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { PostPageComponent } from './post-page/post-page.component';
+import { CommentComponent } from 'src/app/@components/comment/comment.component';
 
 
 @NgModule({
@@ -18,11 +19,13 @@ import { PostPageComponent } from './post-page/post-page.component';
     MdatePipe,
     PostComponent,
     ProfilePageComponent,
-    PostPageComponent
+    PostPageComponent,
+    CommentComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
+    ReactiveFormsModule
 
   ],
   exports:[

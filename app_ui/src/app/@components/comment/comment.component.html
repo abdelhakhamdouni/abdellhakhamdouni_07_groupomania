@@ -1,1 +1,26 @@
-<p>comment works!</p>
+<article class="comment">
+  <div class="comment_image">
+    <img [src]="user.avatar" />
+  </div>
+  <div class="comment-body">
+    <div class="comment-header d-flex flex-column justify-content-start align-items-start">
+      <small class="font-weight-bold">
+        {{user.firstName}} {{user.lastName}}
+      </small>
+      <small class="comment-date">
+        {{comment.createdAt | mdate}}
+      </small>
+    </div>
+    <div class="comment-comment">
+      <p>{{comment.content}}</p>
+    </div>
+    <div class="comment-footer">
+      <button class="btn btn-sm btn-danger" *ngIf="comment.UserId == user.id ">
+        <span class="fa fa-times"></span> Supprimer
+      </button>
+      <button class="btn btn-sm btn-warning">
+        <span class="fa fa-exclamation-triangle"></span> Signaler
+      </button>
+    </div>
+  </div>
+</article>

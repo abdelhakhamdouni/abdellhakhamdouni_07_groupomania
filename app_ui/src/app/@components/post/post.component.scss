@@ -9,6 +9,24 @@
         overflow: hidden;
         filter: grayscale(1);
         opacity: .5;
+        &.signaled{
+            position: relative;
+            filter: grayscale(0);
+            &::after{
+                position: absolute;
+                content: "Un administrateur examinera ce poste, merci pour votre vegilance !";
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 100%;
+                z-index: 9999;
+                background-color: brown;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+    }
     }
     .post__header{
         padding: .5em 1em .5em;

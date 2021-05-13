@@ -9,4 +9,10 @@
     <div class="posts_list">
         <app-post [post]="post"></app-post>
     </div>
+    <div class="post_list" *ngIf="post.Comments.length > 0">
+        <div *ngFor="let comment of post.Comments">
+            <app-comment [comment]="comment" [user]="user"></app-comment>
+        </div>
+    </div>
+
 </div>

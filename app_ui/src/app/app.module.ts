@@ -30,7 +30,7 @@ import { userReducers } from './@store/reducers/user.reducers';
     NavbarComponent,
     NewPostComponent,
     ListUsersComponent,
-    UserCardComponent
+    UserCardComponent,
   ],
   imports: [
     BrowserModule,

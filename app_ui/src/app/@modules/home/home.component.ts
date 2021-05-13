@@ -23,10 +23,9 @@ export class HomeComponent implements OnInit {
     this.postService.getPost()
     this.posts = this.store.select('post')
     this.userService.getUser().subscribe(user => {
-      console.log(user)
       this.user = user})
-    this.modal.classList.remove('show')
-  }
+      this.modal.classList.remove('show')
+    }
 
   showModal(){
     document.querySelector('input').blur()
