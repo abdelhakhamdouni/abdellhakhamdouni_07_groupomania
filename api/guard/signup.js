@@ -9,7 +9,7 @@ const User = require("../models").User
 module.exports = async (req, res, next) =>{
 
     req.file ? 
-    req.body.avatar = req.protocol + "://" + req.get("host") + "/uploads/users_avatar/" + req.file.filename : 
+    req.body.avatar = req.file.filename : 
     req.body.avatar = null
     
     console.log("create posts=============>",req.body)

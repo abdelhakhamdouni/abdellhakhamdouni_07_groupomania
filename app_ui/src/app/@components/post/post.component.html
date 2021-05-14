@@ -24,17 +24,25 @@
         <img *ngIf="!post.image.includes('null')" src={{post.image}} alt={{post.title}} >
     </div>
     <footer class="post__footer">
-        <div class="post__footer-actions">
-            <div class="thumb">
-                <span [class]="'fas fa-thumbs-up ' + liked" (click)="likePost(post.id, like)" ></span> {{post.Likes.length}}
+        <div class="metadata d-flex w-100" >
+            <div class="thumb" *ngIf="likes > 0">
+                <span class="liked">Likes: {{likes}}</span>    
             </div>
             <div class="comment">
                 <span [class]="'fa fa-comment-alt '+commented "></span> {{post.Comments.length}}
             </div>
         </div>
+        <div class="post__footer-actions border-top pt-1">
+            <button class="btn btn-sm btn-light" (click)="likePost(post.id, like)" >
+                <span  [class]="'fas fa-thumbs-up ' + liked" ></span> {{likes}}
+            </button>
+            <button class="btn btn-sm btn-light" (click)="commentThisPost(post.id)">
+                Commenter <span [class]="'fa fa-comment-alt '+commented "></span>
+            </button>
+        </div>
         <div class="post__footer-comment" >
             <form [formGroup]="comment" (submit)="submitComment($event)">
-                <input formControlName="commentText" type="text" placeholder="Ecrire un commentaire ..." name="comment" [class]="'post_ '+post.id" [id]="'post_ '+post.id">
+                <input formControlName="commentText" type="text" placeholder="Ecrire un commentaire ..." name="comment" [class]="'post_ '+post.id" [id]="'post_'+post.id">
             </form>
         </div>
     </footer>

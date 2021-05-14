@@ -19,6 +19,6 @@ export class ListUsersComponent implements OnInit {
     this.users = this.store.select('user')
   }
 
-
+  
 
 }

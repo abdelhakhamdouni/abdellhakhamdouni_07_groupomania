@@ -17,7 +17,7 @@ export class PostPageComponent implements OnInit {
   
   constructor(private postService: PostService, private userService: UserApiService, private store: Store<AppState>, private router: ActivatedRoute) { }
 
-  post: Post;
+  post:Post;
   user;
   modal: HTMLElement = document.querySelector('.modal')
   id: number
@@ -25,13 +25,13 @@ export class PostPageComponent implements OnInit {
   ngOnInit(): void {
     this.postService.getPost()
     this.id = this.router.snapshot.params['id']
-    
-    this.postService.getOnePostById(this.id).subscribe(post => this.post = post)
-    
+
+    this.postService.getOnePostById(this.id)
+    this.store.select('onePost').subscribe(post => this.post = post as Post)
     this.userService.getUser().subscribe(user => {
       this.user = user})
       this.modal.classList.remove('show')
-  }
+    }
 
   showModal(){
     document.querySelector('input').blur()

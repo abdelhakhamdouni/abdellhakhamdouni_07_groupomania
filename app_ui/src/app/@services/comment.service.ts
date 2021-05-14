@@ -17,5 +17,8 @@ export class CommentService {
   saveComment(obj):Observable<any>{
     return this.http.post(this.url,obj)
   }
+  deleteComment(id):Observable<any>{
+    return this.http.delete(this.url+id)
+  }
 
 }

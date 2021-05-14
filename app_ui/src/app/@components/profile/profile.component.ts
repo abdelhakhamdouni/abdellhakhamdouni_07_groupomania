@@ -19,4 +19,5 @@ export class ProfileComponent implements OnInit {
       this.profil = user})
   }
 
+
 }

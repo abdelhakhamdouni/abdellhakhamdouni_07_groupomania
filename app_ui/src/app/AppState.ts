@@ -3,5 +3,7 @@ import User from "./models/User";
 
 export interface AppState{
     readonly post: [],
+    readonly onePost: Post
     readonly user:User[]
+    readonly oneUser: User
 }

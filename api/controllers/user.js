@@ -1,4 +1,6 @@
 const User = require('../models').User
+const Post = require('../models').Post
+const Comment = require('../models').Comment
 const formatUser = require('../utils/formatUser')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
@@ -9,7 +11,8 @@ module.exports = {
 
     getOneUser: async (req, res, next) => {
         let id = req.params.id
-        let user = await User.findByPk(id)
+        let user = await User.findOne({where: {id: id}, include:[{model: Post, include:[Comment]}]})
+        user.Posts.forEach(post=> post.image = `${req.protocol}://${req.get('host')}/uploads/posts_image/${post.image}`)
         let formatedUser = formatUser(user, req)
         user ? res.status(200).json(formatedUser) : res.status(500).json({ err_handler: "GET_ONE_USER", err: "user introubale" })
     },

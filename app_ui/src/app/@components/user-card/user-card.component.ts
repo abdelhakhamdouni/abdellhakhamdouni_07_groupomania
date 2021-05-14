@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-card',
@@ -9,9 +10,13 @@ export class UserCardComponent implements OnInit {
 
   @Input() profil;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+  
+  showProfile(id){
+    this.router.navigateByUrl('/profile/'+id)
   }
 
 }

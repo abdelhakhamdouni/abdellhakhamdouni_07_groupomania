@@ -7,9 +7,9 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { ProfileComponent } from 'src/app/@components/profile/profile.component';
 import { MdatePipe } from 'src/app/@pipes/mdate.pipe';
-import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { PostPageComponent } from './post-page/post-page.component';
 import { CommentComponent } from 'src/app/@components/comment/comment.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 
 @NgModule({
@@ -18,9 +18,10 @@ import { CommentComponent } from 'src/app/@components/comment/comment.component'
     ProfileComponent,
     MdatePipe,
     PostComponent,
-    ProfilePageComponent,
     PostPageComponent,
-    CommentComponent
+    CommentComponent,
+    ProfilePageComponent
+
   ],
   imports: [
     CommonModule,

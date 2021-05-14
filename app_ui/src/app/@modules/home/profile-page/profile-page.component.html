@@ -1,1 +1,50 @@
-<p>profile-page works!</p>
+<div *ngIf="profil">
+
+    <article class="profil">
+        <header>
+            <img [src]="profil.avatar" [alt]="'avatar '+ profil.firstName ">
+        </header>
+        <section>
+            
+            <div class="detail">
+                <h2>{{profil.firstName}} {{profil.lastName}}</h2>
+                <div class="badge">
+                    <p *ngIf="profil.isAdmin">
+                        Rôle: <span class="fa fa-user-shield"></span> Admin
+                    </p>
+                    <p  *ngIf="!profil.isAdmin">
+                        Rôle: <span class="fa fa-user"></span> Membre
+                    </p>
+                </div>
+                <p>Inscrit <span>{{profil.createdAt|mdate}}</span></p>
+                <p>Postes en lignes <span>{{profil.Posts.length}}</span></p>
+            </div>
+            <div class="action">
+                <button class="btn btn-sm btn-primary"><span class="fa fa-edit"></span></button>
+                <button class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></button>
+                <button class="btn btn-sm btn-success"><span class="fa fa-eye"></span></button>
+            </div>
+        </section>
+    </article>
+    <h2>Listes des publication: {{profil.Posts.length}}</h2>
+    <div *ngIf="profil.Posts.length > 0">
+
+        <div *ngFor="let post of profil.Posts; let i = index">
+            <article class="post" [class]="'post_parent_' + post.id" [id]="post.id">
+                <header class="post__header">
+                    <div class="post__header-details">
+                        <img src={{profil.avatar}} alt="">
+                        <div class="metadata">
+                            <span class="date">{{post.createdAt | mdate}}</span>
+                            <span class="autre"></span>
+                        </div>
+                    </div>
+                </header>
+                <div class="post__body" (click)="showPost(post.id)">
+                    <div [innerHtml]="post.description"></div>
+                    <img *ngIf="!post.image.includes('null')" src={{post.image}} alt={{post.title}} >
+                </div>
+            </article>
+        </div>
+    </div>
+</div>

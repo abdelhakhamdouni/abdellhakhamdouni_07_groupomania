@@ -15,10 +15,17 @@ module.exports = {
         console.log(req.body)
 
         Comment.create(req.body)
-        .then(async ()=>{
-            //let formatedPosts = posts.map(post=>post.User.filter(key => key != password))
-            res.status(200).json("comment created !")
-            })
+        .then(async (comment)=>{
+            if(req.body.CommentId === 0){
+                comment.update({CommentId : comment.id}).then(()=>{
+                    //let formatedPosts = posts.map(post=>post.User.filter(key => key != password))
+                    res.status(200).json("comment created !")
+                })
+            }
+            else{
+                res.status(200).json("comment created !")
+            }
+        })
         .catch(err=> {
             console.log(err)
             res.status(500).json({error: "COMMENT_CREATED_ERROR"})

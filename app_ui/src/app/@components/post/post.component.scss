@@ -122,6 +122,10 @@
     }
     .post__footer{
         padding: .5em 1em;
+        .metadata{
+            display: flex;
+            justify-content: space-between;
+        }
         .post__footer-actions{
             display: flex;
             justify-content: space-between;
@@ -129,9 +133,6 @@
             span{
                 color: rgb(136, 136, 136);
                 font-size: 1.2em;
-            }
-            .liked, .commented{
-                color: var(--primary) !important;
             }
         }
         .post__footer-comment{
@@ -149,9 +150,13 @@
                 &:focus,
                 &:active{
                     outline: none;
-                    background-color: #fff;
+                    box-shadow: 0 0 3px rgb(29, 174, 231);
+                    background-color: rgb(255, 255, 255)
                 }
             }
         }
     }
+}
+.liked, .commented{
+    color: var(--primary) !important;
 }

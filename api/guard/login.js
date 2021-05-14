@@ -1,4 +1,5 @@
 const User = require("../models").User
+const Post = require("../models").Post
 /**
  * create user in database
  * @param {Request} req 
@@ -9,7 +10,7 @@ const User = require("../models").User
 module.exports = async (req, res, next) => {
     let email = req.body.email
     console.log(email)
-    const user = await User.findOne({where: {email}})
+    const user = await User.findOne({where: {email}, include:[Post]})
     if (user === null) {
         res.status(200).json({err: 'Votre email ou mot de passe incorrect !'});
     } else {

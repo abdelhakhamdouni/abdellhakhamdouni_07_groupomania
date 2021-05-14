@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import Post from '../models/Post';
 import * as PostAction from '../@store/actions/post.actions'
+import * as OnePostAction from '../@store/actions/onePost.actions'
 import { Store } from '@ngrx/store';
 import { AppState } from '../AppState';
 import { map } from 'rxjs/operators';
@@ -40,8 +41,13 @@ export class PostService {
     })
   }
 
-  getOnePostById(id): Observable<any>{
-    return this.http.get(this.url+id).pipe(post => post )
+  getOnePostById(id): void{
+    this.http.get(this.url+id).subscribe((post: Post)=>{
+      post.Comments = post.Comments.sort((a,b)=>{
+        return a.CommentId - b.CommentId
+      }) 
+      this.store.dispatch(new OnePostAction.LoadPost(post as Post))
+    })
   }
 
 

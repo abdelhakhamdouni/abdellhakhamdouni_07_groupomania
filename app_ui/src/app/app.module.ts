@@ -22,6 +22,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { ListUsersComponent } from './@components/list-users/list-users.component';
 import { userReducers } from './@store/reducers/user.reducers';
+import { onePostReducers } from './@store/reducers/onePost.reducers';
+import { oneUserReducers } from './@store/reducers/oneUser.reducers';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { userReducers } from './@store/reducers/user.reducers';
     CKEditorModule,
     StoreModule.forRoot({
       post : postReducers,
-      user: userReducers
+      user: userReducers,
+      onePost: onePostReducers,
+      oneUser: oneUserReducers
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
     

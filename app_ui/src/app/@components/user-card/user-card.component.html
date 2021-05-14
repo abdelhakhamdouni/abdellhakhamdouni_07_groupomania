@@ -1,4 +1,4 @@
-<section class="user_card" [class]="profil.isAdmin ? 'admin': ''">
+<section class="user_card" [class]="profil.isAdmin ? 'admin': ''"  (click)="showProfile(profil.id)">
     <header>
         <img [src]="profil.avatar" [class]="profil.isAdmin ? 'admin': ''" [alt]="'avatar '+ profil.firstName ">
         <span *ngIf="profil.isAdmin" class="fa fa-user-shield admin"></span>

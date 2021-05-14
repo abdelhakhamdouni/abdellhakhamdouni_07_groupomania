@@ -1,10 +1,12 @@
+import { Store } from '@ngrx/store';
 import { CommentService } from './../../@services/comment.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserApiService } from './../../@services/user-api.service';
-import { Component, Input, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, Input, OnInit, ElementRef } from '@angular/core';
 import { PostService } from 'src/app/@services/post.service';
 import User from 'src/app/models/User';
+import { AppState } from 'src/app/AppState';
 
 @Component({
   selector: 'app-post',
@@ -14,29 +16,33 @@ import User from 'src/app/models/User';
 export class PostComponent implements OnInit {
 
   @Input() post;
+  @Input() onepost
 
   postId: number;
   like: number = 0
-  user: User
   liked: string
-  commented:string
+  likes: number
+  user: User
+  commented: string
   post_hided: number[]
 
   constructor(private postService: PostService,
     private elementRef: ElementRef,
     private userService: UserApiService,
     private router: Router,
+    private store: Store<AppState>,
     private commentService: CommentService) { }
 
   ngOnInit(): void {
 
     this.post_hided = localStorage.getItem('post_hided') ? JSON.parse(localStorage.getItem('post_hided')) : []
     this.liked = ""
-    this.commented =""
+    this.commented = ""
     this.postId = this.post.id
     this.userService.getUser().subscribe(user => this.user = user)
-    if(this.post.Comments.length > 0)this.commented = "commented"
-    if (this.post.Likes.length > 0) {
+    if (this.post.Comments.length > 0) this.commented = "commented"
+    this.likes = this.post.Likes.length
+    if (this.likes > 0) {
       this.post.Likes.forEach(element => {
         if (element.UserId == this.user.id) {
           this.like = 1
@@ -57,14 +63,17 @@ export class PostComponent implements OnInit {
       content,
       UserId: this.user.id,
       PostId: this.post.id,
-      CommentId: null
+      CommentId: 0
     }).subscribe(
       () => {
-        this.postService.getPost()
-        window.location.reload()
+        if(this.onepost){
+          this.postService.getOnePostById(this.post.id)
+        }
+        else{
+          this.postService.getPost()
+        }
       }
-  )
-
+    )
   }
 
   toggleMenu(classe: string) {
@@ -97,7 +106,23 @@ export class PostComponent implements OnInit {
     localStorage.setItem('post_hided', JSON.stringify(this.post_hided))
   }
 
+  commentThisPost(id) {
+    let input: HTMLElement = document.querySelector('#post_' + this.post.id)
+    input.focus()
+  }
+
   likePost(id, like) {
     this.postService.likePost(id, like)
+    console.log(like)
+    if (like === 0) {
+      this.likes++
+      this.liked = 'liked'
+      this.like = 1
+    } else {
+      this.likes--
+      this.liked = ''
+      this.like = 0
+    }
+
   }
 }
