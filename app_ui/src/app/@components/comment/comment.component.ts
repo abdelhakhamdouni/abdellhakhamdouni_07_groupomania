@@ -38,8 +38,9 @@ export class CommentComponent implements OnInit {
       UserId: this.user.id,
       PostId: this.post.id,
       CommentId: this.comment.id
-    }).subscribe(
-      () => {
+    }).subscribe(() => {
+        let input:HTMLElement = document.querySelector('#post_'+this.post.id)
+        input.nodeValue = ''
         this.postService.getOnePostById(this.post.id)
       }
     )
@@ -49,6 +50,8 @@ export class CommentComponent implements OnInit {
     this.commentService.deleteComment(id).subscribe(res=>{
       let comment = document.querySelector(`#comment_${this.comment.id}`) as HTMLElement
       comment.style.display = "none"
+      this.postService.getOnePostById(this.post.id)
+      this._comment_child.controls.commentText.setValue('')
     })
   }
   signalerComment(id?:number){

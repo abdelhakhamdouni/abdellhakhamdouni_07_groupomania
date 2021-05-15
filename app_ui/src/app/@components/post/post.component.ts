@@ -25,6 +25,8 @@ export class PostComponent implements OnInit {
   user: User
   commented: string
   post_hided: number[]
+  modal: HTMLElement = document.querySelector('.modal')
+  menuClasse;
 
   constructor(private postService: PostService,
     private elementRef: ElementRef,
@@ -66,6 +68,8 @@ export class PostComponent implements OnInit {
       CommentId: 0
     }).subscribe(
       () => {
+       this.comment.controls.commentText.setValue('')
+        console.log("comment post")
         if(this.onepost){
           this.postService.getOnePostById(this.post.id)
         }
@@ -77,13 +81,21 @@ export class PostComponent implements OnInit {
   }
 
   toggleMenu(classe: string) {
+    this.menuClasse = classe
     document.querySelector(`.${classe}`).classList.toggle('show')
   }
 
   showPost(id) {
-    this.router.navigateByUrl(`/publication/${id}`)
+    if(this.onepost) {
+      window.open(this.post.image, '_blank', )
+    }
+    else this.router.navigateByUrl(`/publication/${id}`)
   }
-  showEditPostModal(id) { }
+  showEditPostModal(id) {
+      this.postService.setPostIdToEdit(this.post)
+      this.modal.classList.add('show')
+      this.toggleMenu(this.menuClasse)
+   }
   deletePost(id) {
     this.postService.deletePost(id).subscribe(
       (res) => {
