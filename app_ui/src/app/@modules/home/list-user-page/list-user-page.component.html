@@ -1,1 +1,36 @@
+<h2 class="text-info text-center py-3">Listes des membres</h2>
+<div *ngIf="users">
+    <div *ngFor="let profil of users; let i = index">
+        <article class="profil">
+            <header>
+                <img [src]="profil.avatar" [alt]="'avatar '+ profil.firstName ">
+                <h2>{{profil.firstName}} {{profil.lastName}}</h2>
+                <div class="badge">
+                    <p *ngIf="profil.isAdmin">
+                        Rôle: <span class="fa fa-user-shield"></span> Admin
+                    </p>
+                    <p *ngIf="!profil.isAdmin">
+                        Rôle: <span class="fa fa-user"></span> Membre
+                    </p>
+                </div>
+            </header>
+            <section>
 
+                <div class="detail">
+                    <p><strong class="font-weigt-bold text-dark">Inscrit:</strong> <span>{{profil.createdAt|mdate}}</span> <span class="fa fa-calendar"></span></p>
+                    <p *ngIf="profil.Posts"><strong class="font-weigt-bold text-dark">Postes en lignes:</strong> <span>{{profil.Posts.length}}</span> <span class="fa fa-image"></span></p>
+                    <p *ngIf="profil.Posts"><strong class="font-weigt-bold text-dark">Commentaires:</strong> <span>{{profil.Comments.length}}</span> <span class="fa fa-comment-alt"></span></p>
+                    <p class="small text-left"><strong class="font-weigt-bold text-dark">A propos:</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore dicta laborum reprehenderit iusto animi placeat deleniti et magni provident vero.</p>
+                </div>
+                <div class="action">
+                    <button *ngIf="profil.id === user.id" class="btn btn-sm btn-primary"><span
+                            class="fa fa-edit"></span> Modifier</button>
+                    <button *ngIf="user.isAdmin || profil.id === user.id" class="btn btn-sm btn-danger"><span
+                            class="fa fa-trash"></span> Supprimer</button>
+                    <button class="btn btn-sm btn-success"
+                        (click)=showProfile(profil.id)><span class="fa fa-eye"></span> Voir</button>
+                </div>
+            </section>
+        </article>
+    </div>
+</div>

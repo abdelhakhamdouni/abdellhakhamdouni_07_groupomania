@@ -1,6 +1,7 @@
 const User = require('../models').User
 const Post = require('../models').Post
 const Comment = require('../models').Comment
+const Likes = require('../models').Likes
 const formatUser = require('../utils/formatUser')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
@@ -19,7 +20,7 @@ module.exports = {
 
     getAllUsers: async (req, res) => {
         let formatedUsers = []
-        let users = await User.findAll()
+        let users = await User.findAll({include:[Post, Comment, Likes]})
         if (users) {
             formatedUsers = users.map(user => (formatUser(user, req)))
             res.status(200).json(formatedUsers)

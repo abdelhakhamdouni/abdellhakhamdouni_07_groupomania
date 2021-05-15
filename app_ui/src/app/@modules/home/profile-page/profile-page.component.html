@@ -18,9 +18,10 @@
                 <p>Postes en lignes <span *ngIf="profil.Posts">{{profil.Posts.length}}</span></p>
             </div>
             <div class="action">
-                <button class="btn btn-sm btn-primary"><span class="fa fa-edit"></span></button>
-                <button class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></button>
-                <button class="btn btn-sm btn-success"><span class="fa fa-eye"></span></button>
+                <button *ngIf="profil.id === userLogged.id" class="btn btn-sm btn-primary"><span
+                        class="fa fa-edit"></span> Modifier mes données</button>
+                <button *ngIf="userLogged.isAdmin || profil.id === userLogged.id" class="btn btn-sm btn-danger"><span
+                        class="fa fa-trash"></span> Supprimer le profile</button>
             </div>
         </section>
     </article>

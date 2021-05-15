@@ -17,5 +17,6 @@ export class AppComponent {
     this.authService.getLoggedUser().subscribe(bool => this.isUserLogged = bool)
     console.log(this.isUserLogged)
     if(!localStorage.getItem('post_hided')) localStorage.setItem('post_hided', JSON.stringify([]))
+    
   }
 }

@@ -15,11 +15,11 @@ export class ProfilePageComponent implements OnInit {
   constructor(private userService: UserApiService ,private activeRoute: ActivatedRoute, private store: Store<AppState>, private router: Router) { }
 
   profil: User;
+  userLogged: User
   modal: HTMLElement = document.querySelector('.modal')
   id: number
 
   ngOnInit(): void {
-    this.profil
     this.activeRoute.params.subscribe(params=>{
       this.id = params['id']
       this.userService.getUserFromApi(this.id)
@@ -28,6 +28,7 @@ export class ProfilePageComponent implements OnInit {
         this.profil = user as User
         this.modal.classList.remove('show')
       })
+      this.userService.getUser().subscribe(user => this.userLogged = user as User)
     })
   }
 

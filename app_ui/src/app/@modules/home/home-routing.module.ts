@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ListUserPageComponent } from './list-user-page/list-user-page.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'publication/:id', component: PostPageComponent},
+  {path:'membres', component: ListUserPageComponent},
   {path:'profile/:id', component: ProfilePageComponent}
 ];
 
