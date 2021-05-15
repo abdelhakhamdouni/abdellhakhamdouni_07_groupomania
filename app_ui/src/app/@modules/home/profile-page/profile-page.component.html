@@ -1,12 +1,23 @@
 <div *ngIf="profil">
     <article class="profil">
         <header>
-            <img [src]="profil.avatar" [alt]="'avatar '+ profil.firstName ">
+            <img [src]="imagepreview" [alt]="'avatar '+ profil.firstName ">
+            <div *ngIf="modeEdit">
+                <label for="avatar"><span class="fa fa-edit"></span></label>
+                <input type="file" id="avatar" (change)="preview($event)">
+            </div>
         </header>
         <section>
             <div class="detail">
-                <h2>{{profil.firstName}} {{profil.lastName}}</h2>
-                <div class="badge">
+                <h2 *ngIf="modeEdit">{{profil.firstName}} {{profil.lastName}}</h2>
+                <div *ngIf="modeEdit">
+                    <div class="form-group d-flex">
+                        <input class="form-control" [value]="profil.firstName +' '+ profil.lastName"> 
+                    </div>
+                </div>
+                <button *ngIf="modeEdit" class="btn btn-primary" >Valider</button>
+                <button *ngIf="modeEdit" class="btn btn-danger ml-2" (click)="changeMode()">Annuler</button>
+                <div class="badge" *ngIf="!modeEdit">
                     <p *ngIf="profil.isAdmin">
                         Rôle: <span class="fa fa-user-shield"></span> Admin
                     </p>
@@ -14,11 +25,11 @@
                         Rôle: <span class="fa fa-user"></span> Membre
                     </p>
                 </div>
-                <p>Inscrit <span>{{profil.createdAt|mdate}}</span></p>
-                <p>Postes en lignes <span *ngIf="profil.Posts">{{profil.Posts.length}}</span></p>
+                <p *ngIf="!modeEdit">Inscrit <span>{{profil.createdAt|mdate}}</span></p>
+                <p *ngIf="!modeEdit">Postes en lignes <span *ngIf="profil.Posts">{{profil.Posts.length}}</span></p>
             </div>
-            <div class="action">
-                <button *ngIf="profil.id === userLogged.id" class="btn btn-sm btn-primary"><span
+            <div class="action" *ngIf="!modeEdit">
+                <button *ngIf="profil.id === userLogged.id" class="btn btn-sm btn-primary" (click)="changeMode()"><span
                         class="fa fa-edit"></span> Modifier mes données</button>
                 <button *ngIf="userLogged.isAdmin || profil.id === userLogged.id" class="btn btn-sm btn-danger"><span
                         class="fa fa-trash"></span> Supprimer le profile</button>

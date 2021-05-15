@@ -9,7 +9,8 @@ export default interface User {
         password: string;
         createdAt: string;
         isAdmin:boolean;
-        Posts:Post[],
-        Comments: Comment[]
+        bio:string;
+        Posts:Post[];
+        Comments: Comment[];
 
 }

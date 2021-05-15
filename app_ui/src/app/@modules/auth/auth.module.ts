@@ -12,7 +12,7 @@ import { LogoutComponent } from './logout/logout.component';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    LogoutComponent
+    LogoutComponent,
   ],
   imports: [
     CommonModule,

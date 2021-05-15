@@ -35,6 +35,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      bio: {
+        allowNull: true,
+        type: Sequelize.STRING
       }
     });
   },
