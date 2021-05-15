@@ -52,25 +52,30 @@ export class NewPostComponent implements OnInit {
     content: new FormControl('')
   })
 
+  MIME_TYPES = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/webp']
+
   closeModal(){
     document.querySelector('.modal').classList.toggle('show')
   }
 
   preview(event) {
+    this.error = ''
     let files = event.target.files;
     if (files.length === 0)
       return;
+    console.log(files[0].type)
     var mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
-      return;
+    if(this.MIME_TYPES.indexOf(mimeType) === -1){
+      this.error = "Only images are supported.";
+      return 
     }
-    
-    var reader = new FileReader();
-    this.image = files;
-    reader.readAsDataURL(files[0]); 
-    reader.onload = (_event) => { 
-      this.imagepreview = reader.result; 
+    else{ 
+      var reader = new FileReader();
+      this.image = files;
+      reader.readAsDataURL(files[0]); 
+      reader.onload = (_event) => { 
+        this.imagepreview = reader.result; 
+      }
     }
   }
   

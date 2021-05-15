@@ -23,10 +23,8 @@
                 <img src={{imagepreview}} alt=""><span class="fa fa-times" (click)="deleteImage($event)"></span>
             </div>
         </div>
-        <div *ngIf="error" class="error">
-            <span class="fa fa-exclamation-triangle"></span> &nbsp;
-            <span>{{error}}</span>
-            <span class="fa fa-smile"></span>
+        <div *ngIf="error" class="alert alert-warning error">
+            <span class="fa fa-exclamation-triangle"></span> &nbsp;<span>{{error}}</span> <span class="fa fa-smile"></span>
         </div>
         <button *ngIf="!update" (click)="savePostForm($event)" class="btn btn-primary" type="submit">Poster</button>
         <button *ngIf="update" (click)="updatePostForm($event)" class="btn btn-primary" type="submit">Enregistrer</button>

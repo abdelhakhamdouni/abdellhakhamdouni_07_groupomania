@@ -31,8 +31,8 @@ import { oneUserReducers } from './@store/reducers/oneUser.reducers';
     FooterComponent,
     NavbarComponent,
     NewPostComponent,
-    ListUsersComponent,
     UserCardComponent,
+    ListUsersComponent
   ],
   imports: [
     BrowserModule,

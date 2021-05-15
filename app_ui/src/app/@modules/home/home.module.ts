@@ -1,4 +1,4 @@
-import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { PostComponent } from './../../@components/post/post.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,6 +10,7 @@ import { MdatePipe } from 'src/app/@pipes/mdate.pipe';
 import { PostPageComponent } from './post-page/post-page.component';
 import { CommentComponent } from 'src/app/@components/comment/comment.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ListUserPageComponent } from './list-user-page/list-user-page.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     PostComponent,
     PostPageComponent,
     CommentComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    ListUserPageComponent,
 
   ],
   imports: [
@@ -31,7 +33,8 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
   ],
   exports:[
     ProfileComponent,
-    MdatePipe
+    MdatePipe,
+
   ]
 })
 export class HomeModule { }

@@ -99,9 +99,8 @@ export class PostComponent implements OnInit {
   deletePost(id) {
     this.postService.deletePost(id).subscribe(
       (res) => {
-        console.log("post_deleteted")
+        if(this.onepost) this.router.navigateByUrl('/')
         this.postService.getPost()
-        window.location.reload()
       })
   }
   hidePost(id) {
