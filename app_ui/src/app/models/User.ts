@@ -1,8 +1,6 @@
-import * as moment from 'moment'
-import 'moment/locale/fr'
-moment.locale('fr')
-
-export default class User {
+import Post from 'src/app/models/Post';
+import Comment from 'src/app/models/Comment';
+export default interface User {
         id: number;
         firstName: string;
         lastName: string;
@@ -11,10 +9,7 @@ export default class User {
         password: string;
         createdAt: string;
         isAdmin:boolean;
-    constructor(id,firstName,lastName,avatar,email,password,createdAt,isAdmin){}
-
-    public static fromJsonToUser(json: any): User{
-        return json
-    }
+        Posts:Post[],
+        Comments: Comment[]
 
 }

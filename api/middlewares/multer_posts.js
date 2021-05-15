@@ -6,6 +6,7 @@ const MIME_TYPES = {
   "image/png": "png",
   "image/gif": "gif",
   "video/webm": "webm",
+  "image/webp": "webp",
 };
 
 const PATH_NAME = "uploads/posts_image"

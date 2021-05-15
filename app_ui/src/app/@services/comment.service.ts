@@ -15,7 +15,7 @@ export class CommentService {
   constructor(protected http: HttpClient, private postService: PostService, private userService: UserApiService,) { }
 
   saveComment(obj):Observable<any>{
-    return this.http.post(this.url,obj)
+    return this.http.post(this.url,obj).pipe(res => res)
   }
   deleteComment(id):Observable<any>{
     return this.http.delete(this.url+id)

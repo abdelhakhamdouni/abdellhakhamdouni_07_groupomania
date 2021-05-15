@@ -11,11 +11,11 @@
         <div class="post__header-action">
             <span class="fa fa-ellipsis-h" (click)="toggleMenu('post_'+post.id)"></span>
             <ul class="menu" [class]="'post_' + post.id">
-                <li (click)="showPost(post.id)"><span class="fa fa-info"></span>Information</li>
-                <li (click)="showEditPostModal(post.id)"><span class="fa fa-edit"></span>Modifier</li>
-                <li (click)="deletePost(post.id)"><span class="fa fa-trash"></span>Supprimer</li>
-                <li (click)="hidePost(post.id)"><span class="fa fa-eye-slash"></span>Masquer</li>
-                <li (click)="signalerPost(post.id)"><span class="fa fa-exclamation-triangle"></span>Signaler</li>
+                <li (click)="showPost(post.id)" *ngIf="post.UserId != user.id"><span class="fa fa-info text-success"></span>Voir cette publication</li>
+                <li (click)="showEditPostModal(post.id)"  *ngIf="post.UserId === user.id"><span class="fa fa-edit text-primary"></span>Modifier la publication</li>
+                <li (click)="deletePost(post.id)" *ngIf="post.UserId === user.id || user.isAdmin"><span class="fa fa-trash text-danger"></span>Supprimer la publication</li>
+                <li (click)="hidePost(post.id)" *ngIf="post.UserId != user.id"><span class="fa fa-eye-slash text-warning"></span>Masquer la publication</li>
+                <li (click)="signalerPost(post.id)" *ngIf="post.UserId != user.id"><span class="fa fa-exclamation-triangle text-info"></span>Signaler la publication</li>
             </ul>
         </div>
     </header>
@@ -26,18 +26,19 @@
     <footer class="post__footer">
         <div class="metadata d-flex w-100" >
             <div class="thumb" *ngIf="likes > 0">
-                <span class="liked">Likes: {{likes}}</span>    
+                <span class="liked">{{likes}} Likes <span class="far fa-thumbs-up liked" ></span> </span>    
             </div>
             <div class="comment">
-                <span [class]="'fa fa-comment-alt '+commented "></span> {{post.Comments.length}}
+                {{post.Comments.length}} Commentaires
             </div>
         </div>
         <div class="post__footer-actions border-top pt-1">
             <button class="btn btn-sm btn-light" (click)="likePost(post.id, like)" >
-                <span  [class]="'fas fa-thumbs-up ' + liked" ></span> {{likes}}
+                <span *ngIf="liked == ''"><span class="far fa-thumbs-up" ></span> J'aime</span>
+                <span class="liked" *ngIf="liked != ''"><span class="far fa-thumbs-up liked" ></span> Je n'aime plus</span>
             </button>
             <button class="btn btn-sm btn-light" (click)="commentThisPost(post.id)">
-                Commenter <span [class]="'fa fa-comment-alt '+commented "></span>
+                <span class="far fa-comment-alt"></span> Commenter 
             </button>
         </div>
         <div class="post__footer-comment" >

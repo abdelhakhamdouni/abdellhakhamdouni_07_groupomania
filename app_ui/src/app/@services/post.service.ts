@@ -1,6 +1,6 @@
 import { UserApiService } from './user-api.service';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable, EventEmitter  } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import Post from '../models/Post';
 import * as PostAction from '../@store/actions/post.actions'
@@ -20,6 +20,8 @@ export class PostService {
   posts: Post[]
 
   constructor(protected http: HttpClient, private store: Store<AppState>, private userService: UserApiService,) { }
+
+  dataUpdated:EventEmitter<any> = new EventEmitter()
 
   public getPost(): void {
     this.http.get(this.url)
@@ -62,6 +64,16 @@ export class PostService {
       )
   }
 
+  public updatePost(formData: FormData,id): Observable<any> {
+    return this.http.put(this.url+id, formData)
+      .pipe(
+        res => {
+          console.log(res)
+          return res
+        }
+      )
+  }
+
   public deletePost(id?: number): Observable<any> {
     return this.http.delete(this.url + id)
   }
@@ -74,6 +86,10 @@ export class PostService {
     this.http.post(`${this.url}like/${id}`, {
       UserId, PostId, like
     }).subscribe(res => this.getPost())
+  }
+
+  public setPostIdToEdit(data){
+    this.dataUpdated.emit(data)
   }
 
 }

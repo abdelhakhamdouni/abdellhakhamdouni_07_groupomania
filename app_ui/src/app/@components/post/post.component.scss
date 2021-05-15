@@ -58,6 +58,8 @@
         }
         .post__header-action{
             position: relative;
+            flex-grow: 1;
+            text-align: right;
             span{
                 cursor: pointer;
             }

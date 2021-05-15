@@ -120,18 +120,24 @@ module.exports = {
      * @param {*} next 
      */
     updatePost: async (req, res, next) => {
+        console.log("update Post ===========================")
         let postData = JSON.parse(req.body.post)
-        let postId = req.params.id
-        postData.image = req.protocol + "://" + req.get("host") + '/uploads/images/' + req.file.filename || null
+        let id = req.params.id
         Post.findOne({ where: { id } })
-            .then(post => {
-                post.update(postData)
+        .then(post => {
+            req.file ? postData.image = req.file.filename : postData.image =  post.image
+            post.update(postData)
                     .then(async () => {
                         console.log('ok')
                         let posts = await Post.findAll({ include: [User, Comment, Likes], order: [['updatedAt', 'DESC']] })
                         if (posts) {
-                            //let formatedPosts = posts.map(post=>post.User.filter(key => key != password))
-                            res.status(200).json(posts)
+                            posts.forEach(function (post, index) {
+                                post.image = `${req.protocol}://${req.get('host')}/uploads/posts_image/${post.image}`
+                                post.User = formatUser(post.User, req)
+                                if (index === posts.length - 1) {
+                                    res.status(200).json(posts)
+                                }
+                            });
                         }
                         else {
                             console.log(error)

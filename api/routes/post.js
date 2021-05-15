@@ -7,7 +7,7 @@ router.get('/',check, postCtrl.getAllPosts)
 router.get('/user/:id',check, postCtrl.getAllPostsByUserId)
 router.get('/:id', check, postCtrl.getOnePost)
 router.post('/',check, multer, postCtrl.createPost)
-router.put('/',check, postCtrl.updatePost)
+router.put('/:id',check, multer, postCtrl.updatePost)
 router.delete('/:id',check, postCtrl.deletePost)
 
 
