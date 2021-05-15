@@ -22,7 +22,7 @@ import { LogoutComponent } from './logout/logout.component';
   ],
   exports:[
     LoginComponent,
-    LoginComponent
+    LogoutComponent,
   ]
 })
 export class AuthModule { }

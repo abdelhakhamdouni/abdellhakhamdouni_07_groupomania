@@ -9,10 +9,13 @@ import { Router } from '@angular/router';
 export class LogoutComponent implements OnInit {
 
   constructor(private router: Router) { }
+  
+  modal: HTMLElement = document.querySelector('.modal')
 
   ngOnInit(): void {
-    sessionStorage.clear()
     window.location.href = "/"
+    this.modal.classList.remove('show')
+    sessionStorage.clear()
   }
 
 }
