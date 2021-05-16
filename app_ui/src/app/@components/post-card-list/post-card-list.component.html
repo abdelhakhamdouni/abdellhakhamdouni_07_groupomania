@@ -1,0 +1,7 @@
+<div  class="post-card-list">
+    <h5 class="sticky-top bg-white py-3 text-center">Dernieres interactions</h5>
+    <div *ngFor="let post of _posts">
+        <app-post-cards [post]="post"></app-post-cards>
+    </div>
+</div>
+

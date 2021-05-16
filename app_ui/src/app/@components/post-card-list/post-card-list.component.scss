@@ -1,0 +1,9 @@
+.post-card-list{
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-top: 1em;
+    h5{
+        box-shadow: 0 2px 5px black;
+    }
+}

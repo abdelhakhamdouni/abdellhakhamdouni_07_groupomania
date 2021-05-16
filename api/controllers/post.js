@@ -82,6 +82,22 @@ module.exports = {
         }
         else res.status(500).json({ error: "POST_GETALL_ERROR" })
     },
+    getLastPosts: async (req, res) => {
+        let posts = await Post.findAll({ include: [User, Comment, Likes], order: [['updatedAt', 'DESC']], limit: 5})
+        if (posts) {
+            if (posts.length === 0) res.status(200).json([])
+            else {
+                posts.forEach(function (post, index) {
+                    post.image = `${req.protocol}://${req.get('host')}/uploads/posts_image/${post.image}`
+                    post.User = formatUser(post.User, req)
+                    if (index === posts.length - 1) {
+                        res.status(200).json(posts)
+                    }
+                });
+            }
+        }
+        else res.status(500).json({ error: "POST_GETALL_ERROR" })
+    },
 
     /**
      * Get one post by id 

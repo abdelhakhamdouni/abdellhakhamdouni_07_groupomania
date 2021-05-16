@@ -124,7 +124,7 @@ export class PostComponent implements OnInit {
 
   likePost(id, like) {
     this.postService.likePost(id, like)
-    console.log(like)
+    this.postService.getLastPosts()
     if (like === 0) {
       this.likes++
       this.liked = 'liked'

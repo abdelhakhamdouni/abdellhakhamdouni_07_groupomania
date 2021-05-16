@@ -4,6 +4,7 @@ const multer = require('../middlewares/multer_posts');
 const check = require('../middlewares/token/check');
 
 router.get('/',check, postCtrl.getAllPosts)
+router.get('/lasts',check, postCtrl.getLastPosts)
 router.get('/user/:id',check, postCtrl.getAllPostsByUserId)
 router.get('/:id', check, postCtrl.getOnePost)
 router.post('/',check, multer, postCtrl.createPost)

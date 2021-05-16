@@ -1,5 +1,6 @@
+import { NavigationService } from './../../@services/navigation.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserApiService } from 'src/app/@services/user-api.service';
 import User from 'src/app/models/User';
 
@@ -10,14 +11,16 @@ import User from 'src/app/models/User';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private userService: UserApiService, private routerActive: ActivatedRoute) { }
+  constructor(private userService: UserApiService, private navService: NavigationService) { }
 
   image:string = '/assets/images/icon.svg'
   user: User
+  path: string
 
   ngOnInit(): void {
     this.userService.getUser().subscribe(user=> this.user = user)
-    this.routerActive.params.subscribe(param => console.log(param))
+    this.navService.getUrl().subscribe(path => console.log(path))
+    
   }
 
 

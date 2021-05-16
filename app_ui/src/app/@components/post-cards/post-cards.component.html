@@ -1,0 +1,7 @@
+<div *ngIf="post" class="post-card border p-2">
+    <p class="font-weight-bold text-primary mr-3 small mb-0">{{post.User.firstName}} {{post.User.lastName}}</p>
+    
+    <p class="small mb-0">{{post.updatedAt | mdate}} <span class="fa fa-comment-alt small text-primary"> {{post.Comments.length}}</span> , <span class="fa fa-thumbs-up text-primary small"> {{post.Likes.length}}</span></p>
+    <img *ngIf="image != null" [src]="image">
+    <p *ngIf="image == null" [innerHtml]="post.description"></p>
+</div>
