@@ -19,9 +19,9 @@
             </ul>
         </div>
     </header>
-    <div class="post__body" (click)="showPost(post.id)">
+    <div class="post__body">
         <div [innerHtml]="post.description"></div>
-        <img *ngIf="!post.image.includes('null')" src={{post.image}} alt={{post.title}} >
+        <img (click)="showPost(post.id)" *ngIf="!post.image.includes('null')" src={{post.image}} alt={{post.title}} >
     </div>
     <footer class="post__footer small">
         <div class="metadata d-flex w-100" >

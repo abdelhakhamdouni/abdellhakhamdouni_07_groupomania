@@ -86,7 +86,10 @@ export class PostService {
 
     this.http.post(`${this.url}like/${id}`, {
       UserId, PostId, like
-    }).subscribe(res => this.getPost())
+    }).subscribe(res => {
+      this.getPost()
+      this.getLastPosts()
+    })
   }
 
   public setPostIdToEdit(data){

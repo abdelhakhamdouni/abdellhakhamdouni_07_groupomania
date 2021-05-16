@@ -42,6 +42,7 @@ export class CommentComponent implements OnInit {
         let input:HTMLElement = document.querySelector('#post_'+this.post.id)
         input.nodeValue = ''
         this.postService.getOnePostById(this.post.id)
+        this.postService.getLastPosts()
       }
     )
   }
@@ -52,6 +53,8 @@ export class CommentComponent implements OnInit {
       comment.style.display = "none"
       this.postService.getOnePostById(this.post.id)
       this._comment_child.controls.commentText.setValue('')
+      this.postService.getLastPosts()
+
     })
   }
   signalerComment(id?:number){

@@ -25,6 +25,10 @@ module.exports = {
             else{
                 res.status(200).json("comment created !")
             }
+            Post.findOne({ where: { id: req.body.PostId } })
+            .then(post => {
+                post.update({lastUpdate: new Date()})
+            })
         })
         .catch(err=> {
             console.log(err)
@@ -116,7 +120,13 @@ module.exports = {
         let commentId = req.params.id
         const comment = await Comment.findOne({where: {id: commentId}})
         await comment.destroy()
-                .then(()=> res.status(200).json("comment supprimé"))
+                .then(async ()=> {
+                    await Post.findOne({ where: { id: comment.PostId } })
+                    .then(post => {
+                        post.update({lastUpdate: new Date()})
+                    })
+                    res.status(200).json("comment supprimé")
+                })
                 .catch(err=> res.status(500).json("le comment n'as pas pu étre supprimé !", err))
     },
 }

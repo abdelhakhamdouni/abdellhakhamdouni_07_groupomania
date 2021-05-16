@@ -83,7 +83,13 @@ module.exports = {
         else res.status(500).json({ error: "POST_GETALL_ERROR" })
     },
     getLastPosts: async (req, res) => {
-        let posts = await Post.findAll({ include: [User, Comment, Likes], order: [['updatedAt', 'DESC']], limit: 5})
+        let posts = await Post.findAll({
+            order: [
+                ['updatedAt', 'DESC']
+            ],
+            limit: 5,
+            include: [User, Comment, Likes]
+        })
         if (posts) {
             if (posts.length === 0) res.status(200).json([])
             else {
@@ -124,7 +130,7 @@ module.exports = {
             })
             .catch(err => {
                 console.log(err)
-                res.status(500).json({ error: "POST_GET_ONE_ERROR" , err})
+                res.status(500).json({ error: "POST_GET_ONE_ERROR", err })
             })
     },
 
@@ -140,9 +146,9 @@ module.exports = {
         let postData = JSON.parse(req.body.post)
         let id = req.params.id
         Post.findOne({ where: { id } })
-        .then(post => {
-            req.file ? postData.image = req.file.filename : postData.image =  post.image
-            post.update(postData)
+            .then(post => {
+                req.file ? postData.image = req.file.filename : postData.image = post.image
+                post.update(postData)
                     .then(async () => {
                         console.log('ok')
                         let posts = await Post.findAll({ include: [User, Comment, Likes], order: [['updatedAt', 'DESC']] })
@@ -189,11 +195,15 @@ module.exports = {
     likePost: async (req, res, next) => {
         console.log(req.body)
         let { UserId, PostId, like } = req.body
+        Post.findOne({ where: { id: PostId } })
+            .then(post => {
+                post.update({lastUpdate: new Date()})
+            })
+
         if (like == 0) {
             const _like = await Likes.create({ UserId, PostId, like })
             if (_like) res.status(201).json("ok")
             else res.status(200).json({ err: "impossible de créer le like" })
-
         } else {
             const _like = await Likes.findOne({ where: { [Op.and]: [{ UserId, PostId }] } })
             const response = _like.destroy()

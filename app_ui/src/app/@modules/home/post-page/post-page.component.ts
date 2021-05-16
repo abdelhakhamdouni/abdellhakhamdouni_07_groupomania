@@ -24,14 +24,18 @@ export class PostPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.getPost()
-    this.id = this.router.snapshot.params['id']
-
-    this.postService.getOnePostById(this.id)
-    this.store.select('onePost').subscribe(post => this.post = post as Post)
-    this.userService.getUser().subscribe(user => {
-      this.user = user})
-      this.modal.classList.remove('show')
-    }
+    this.router.params.subscribe(params=>{
+      this.id = params['id']
+      this.postService.getOnePostById(this.id)
+      this.store.select('onePost').subscribe(post => {
+        this.post = post as Post
+      })
+    })
+      this.userService.getUser().subscribe(user => {
+        this.user = user
+      })
+        this.modal.classList.remove('show')
+  }
 
   showModal(){
     document.querySelector('input').blur()

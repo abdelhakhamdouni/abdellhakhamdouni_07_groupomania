@@ -72,9 +72,11 @@ export class PostComponent implements OnInit {
         console.log("comment post")
         if(this.onepost){
           this.postService.getOnePostById(this.post.id)
+          this.postService.getLastPosts()
         }
         else{
           this.postService.getPost()
+          this.postService.getLastPosts()
         }
       }
     )
@@ -86,7 +88,7 @@ export class PostComponent implements OnInit {
   }
 
   showPost(id) {
-    if(this.onepost) {
+    if(this.onepost && !this.post.image.includes('null')) {
       window.open(this.post.image, '_blank', )
     }
     else this.router.navigateByUrl(`/publication/${id}`)

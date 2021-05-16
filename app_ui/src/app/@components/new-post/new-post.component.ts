@@ -155,6 +155,7 @@ export class NewPostComponent implements OnInit {
           this.postgroup.controls.content.setValue('')
           this.postgroup.controls.title.setValue('')
           this.closeModal()
+          window.location.reload()
         
       })
     }
