@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       models.User.hasMany(models.Post)
       models.User.hasMany(models.Comment)
       models.User.hasMany(models.Likes)
+      models.User.hasMany(models.Message)
 
     }
   };

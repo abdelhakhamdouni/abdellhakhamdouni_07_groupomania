@@ -4,12 +4,14 @@ const authRouter = require('./auth');
 const usersRouter = require('./user');
 const postRouter = require('./post');
 const commentRouter = require('./comment');
+const messageRouter = require('./chat');
 
 
 router.use('/auth', authRouter);
 router.use('/users', usersRouter);
 router.use('/posts', postRouter);
 router.use('/comments', commentRouter);
+router.use('/messages', messageRouter);
 
 // catch 404 and forward to error handler
 router.use(function(req, res, next) {

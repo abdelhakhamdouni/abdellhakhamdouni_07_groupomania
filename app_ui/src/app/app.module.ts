@@ -27,6 +27,8 @@ import { oneUserReducers } from './@store/reducers/oneUser.reducers';
 import { PostCardsComponent } from './@components/post-cards/post-cards.component';
 import { PostCardListComponent } from './@components/post-card-list/post-card-list.component';
 import { lastPostReducers } from './@store/reducers/lastPost.reducers';
+import { MobileNavComponent } from './@components/mobile-nav/mobile-nav.component';
+import { messageReducers } from './@store/reducers/message.reducers';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { lastPostReducers } from './@store/reducers/lastPost.reducers';
     UserCardComponent,
     ListUsersComponent,
     PostCardsComponent,
-    PostCardListComponent
+    PostCardListComponent,
+    MobileNavComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ import { lastPostReducers } from './@store/reducers/lastPost.reducers';
       user: userReducers,
       onePost: onePostReducers,
       oneUser: oneUserReducers,
-      lastPosts: lastPostReducers
+      lastPosts: lastPostReducers,
+      message: messageReducers
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
     

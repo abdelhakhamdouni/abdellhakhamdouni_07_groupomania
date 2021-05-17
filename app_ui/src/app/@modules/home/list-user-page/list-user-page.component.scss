@@ -76,3 +76,15 @@
     }
 }
 }
+
+@media (max-width: 768px){
+    .users{
+        padding-bottom: 5em;
+    }
+    .profil{
+        flex-direction: column;
+        section{
+            border: none;
+        }
+    }
+}

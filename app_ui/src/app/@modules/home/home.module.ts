@@ -1,3 +1,4 @@
+import { ChatPageComponent } from './../home/chat-page/chat-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostComponent } from './../../@components/post/post.component';
 import { NgModule } from '@angular/core';
@@ -23,6 +24,7 @@ import { ListUserPageComponent } from './list-user-page/list-user-page.component
     CommentComponent,
     ProfilePageComponent,
     ListUserPageComponent,
+    ChatPageComponent
 
   ],
   imports: [

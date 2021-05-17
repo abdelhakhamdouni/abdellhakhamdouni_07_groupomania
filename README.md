@@ -38,3 +38,15 @@ http://localhost:3000
 Cliquer sur le bouton créer un compte dans la page de connexion, remplir le formulaire en choisissant un avatar. et valider.
 Vous serez redérigé vers la page de connexion ensuite.
 Le site est optimisé pour une utilisation sur mobile
+
+If you have an existing database and you want to add support:
+
+ALTER DATABASE database_name CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+You also need to set the correct character set and collation for your tables:
+
+CREATE TABLE IF NOT EXISTS table_name (
+    ...
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci;
+or change it if you've got existing tables with a lot of data:
+
+ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
