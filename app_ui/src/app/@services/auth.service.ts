@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
+import { timeout } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AuthService {
   constructor(private http: HttpClient, private constService: ConstService) {
     this.url = constService.getUrl('auth')
    }
+
 
   getLoggedUser():Observable<boolean>{
     return new Observable(observer => {
