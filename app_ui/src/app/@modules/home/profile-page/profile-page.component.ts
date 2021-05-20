@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/@services/auth.service';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,7 +14,12 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ProfilePageComponent implements OnInit {
 
-  constructor(private userService: UserApiService ,private activeRoute: ActivatedRoute, private store: Store<AppState>, private router: Router) { }
+  constructor(private userService: UserApiService ,
+              private activeRoute: ActivatedRoute, 
+              private store: Store<AppState>, 
+              private router: Router,
+              private authService: AuthService
+            ) { }
 
   profil: User;
   userLogged: User
@@ -22,6 +28,7 @@ export class ProfilePageComponent implements OnInit {
   image
   imagepreview
   modeEdit: boolean = false
+  deleteForm = false
   
   MIME_TYPES = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/webp']
   
@@ -48,10 +55,10 @@ export class ProfilePageComponent implements OnInit {
   showPost(id){
     this.router.navigateByUrl(`/publication/${id}`)
   }
-  
-  postgroup = new FormGroup({
-    title: new FormControl(''),
-    content: new FormControl('')
+
+
+  confirmForm = new FormGroup({
+    password: new FormControl('')
   })
   
   preview(event) {
@@ -76,6 +83,28 @@ export class ProfilePageComponent implements OnInit {
 
   changeMode(){
     this.modeEdit = !this.modeEdit
+  }
+  showDeleteForm(){
+    this.deleteForm = !this.deleteForm
+  }
+
+  deleteUser(e){
+    e.preventDefault()
+    let confirm = window.confirm("Ètes vous sur de vouloir supprimer l'utilisateur ")
+    if(confirm){
+      this.authService.deleteUser(this.profil.id, this.confirmForm.controls.password.value).subscribe((res)=>{
+        if(res.err){
+          alert(res.err)
+        }
+        else{
+          alert(res.err)
+
+          this.userService.getUsers()
+          alert(`L'utilisateur ${this.profil.firstName} ${this.profil.lastName} a été supprimé`)
+          //this.router.navigateByUrl('/')
+        }
+      })
+    }
   }
 
 

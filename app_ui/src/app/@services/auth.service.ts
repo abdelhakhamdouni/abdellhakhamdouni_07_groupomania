@@ -35,4 +35,12 @@ export class AuthService {
     return this.http.post(`${this.url}/signup`, formdata)
   }
 
+  public fpassword(email):Observable<any>{
+    return this.http.put(this.url+'/update-password', email)
+  }
+
+  public deleteUser(id, pass):Observable<any>{
+    return this.http.delete(this.url+'/'+id, pass)
+  }
+
 }

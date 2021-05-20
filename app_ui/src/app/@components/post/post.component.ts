@@ -75,7 +75,6 @@ export class PostComponent implements OnInit {
           this.postService.getLastPosts()
         }
         else{
-          this.postService.getPost()
           this.postService.getLastPosts()
         }
       }
@@ -103,6 +102,7 @@ export class PostComponent implements OnInit {
       (res) => {
         if(this.onepost) this.router.navigateByUrl('/')
         this.postService.getPost()
+        this.postService.getLastPosts()
       })
   }
   hidePost(id) {

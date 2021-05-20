@@ -31,8 +31,16 @@
             <div class="action" *ngIf="!modeEdit">
                 <button *ngIf="profil.id === userLogged.id" class="btn btn-sm btn-primary" (click)="changeMode()"><span
                         class="fa fa-edit"></span> Modifier mes données</button>
-                <button *ngIf="userLogged.isAdmin || profil.id === userLogged.id" class="btn btn-sm btn-danger"><span
+                <button *ngIf="userLogged.isAdmin || profil.id === userLogged.id" class="btn btn-sm btn-danger" (click)="showDeleteForm()"><span
                         class="fa fa-trash"></span> Supprimer le profile</button>
+                <form *ngIf="deleteForm" class="confirmPassword" [formGroup]="confirmForm">
+                    <label for="password">Votre mot de passe:</label>
+                    <input class="form-control" id="password" name="password" formControlName="password">
+                    <div class="mt-3">
+                        <button class="btn btn-danger" (click)="deleteUser($event)">Valider</button>
+                        <button class="btn btn-info mr-2" (click)="showDeleteForm()">Annuler</button>
+                    </div>
+                </form>
             </div>
         </section>
     </article>

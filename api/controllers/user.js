@@ -51,10 +51,5 @@ module.exports = {
         })
     },
 
-    deleteUser: async (req, res, next) => {
-        let id = req.params.id
-        let user = await User.findByPk(id)
-        let deleted = await user.destroy()
-        deleted ? res.status(200).json({ success: "user deleted " }) : res.status(500).json({ err_handler: "GET_ONE_USER", err: "user introubale" })
-    },
+
 }

@@ -12,28 +12,26 @@ export class ForgotPasswordComponent implements OnInit {
 
   image: string = "assets/images/img-01.png"
   error:string
+  showValider = true
 
   constructor(private authService: AuthService, private router:Router) { }
 
-  login = new FormGroup({
+  fpassword = new FormGroup({
     email: new FormControl('')
   })
 
   submit(e){
     e.preventDefault()
     this.error = ''
-    const email = this.login.controls.email.value
-    const password = this.login.controls.password.value
-    this.authService.login(email, password).subscribe(data=> {
+    const email = this.fpassword.controls.email.value
+    this.authService.fpassword({email}).subscribe(data=> {
       console.log(data)
       if(data.err){
         this.error = data.err
       }
       else{
-        sessionStorage.setItem('loged', 'true')
-        sessionStorage.setItem('token', data.token)
-        sessionStorage.setItem('user', JSON.stringify(data.user))
-        window.location.href = '/'
+      this.error = `Votre mot de passe a été mis a jour voici le nouveau : ${data.password}`
+      this.showValider = false
       }
     })
   }
