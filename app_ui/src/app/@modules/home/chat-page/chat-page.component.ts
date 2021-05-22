@@ -6,6 +6,7 @@ import { Component, OnInit, AfterViewInit} from '@angular/core';
 import { MessageService } from 'src/app/@services/message.service';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { AppState } from 'src/app/AppState';
+import { io } from 'socket.io-client';
 
 @Component({
   selector: 'app-chat-page',
@@ -19,15 +20,24 @@ export class ChatPageComponent implements OnInit {
   user: User
   modal: HTMLElement = document.querySelector('.modal')
   message = new FormControl('')
-  messages: Message[]
+  messages
 
   ngOnInit(): void {
-    this.userService.getUser().subscribe(user => this.user = user)
     this.mservice.getMessage()
-    this.store.select('message').subscribe(messages => this.messages = messages )
+    this.userService.getUser().subscribe(user => {
+      console.log(user)
+      this.user = user
+    })
+    this.store.select('message').subscribe(messages => {
+      console.log(messages)
+      this.messages = messages 
+    })
     console.log(this.messages)
     this.modal.classList.remove('show')
-    console.log(this.user, this.messages)
+    let socket = io("http://localhost:8000", { transports : ['websocket','polling', 'flashsocket'] }).connect()
+    socket.on('new message', ()=> {
+      this.mservice.getMessage()
+    })
     
   }
   
@@ -48,7 +58,6 @@ export class ChatPageComponent implements OnInit {
       private: false
     })
     this.message.setValue('')
-
   }
 
 }
