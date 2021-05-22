@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './@services/auth.service';
+import {io} from 'socket.io-client'
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,8 @@ import { AuthService } from './@services/auth.service';
 })
 export class AppComponent {
 
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService){
+  }
 
   title = 'grp-frontend';
   isUserLogged: boolean;

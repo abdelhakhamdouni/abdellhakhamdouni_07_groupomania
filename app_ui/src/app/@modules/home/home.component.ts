@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/AppState';
 import Post from 'src/app/models/Post';
+import { io } from 'socket.io-client';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,10 @@ import Post from 'src/app/models/Post';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private postService: PostService, private userService: UserApiService, private store: Store<AppState>) { }
+  socket;
+  constructor(private postService: PostService, private userService: UserApiService, private store: Store<AppState>) { 
+    this.socket = io("http://localhost:8000", { transports : ['websocket','polling', 'flashsocket'] })
+  }
 
   posts: Observable<Post[]>;
   user;

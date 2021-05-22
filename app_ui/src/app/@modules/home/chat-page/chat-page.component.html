@@ -1,7 +1,6 @@
 <div *ngIf="messages" class="messages">
-    <div *ngFor="let message of messages, let i= index" class="message" [class]="message.User.id == user.id ? 'author' : ''">
+    <div *ngFor="let message of messages; let i = index" class="message" [class]="message.UserId === user.id ? 'author' : 'ntAuthor'">
         <h6 class="small">{{message.User.firstName}} {{message.User.lastName}} <small class="ml-2">{{message.createdAt | mdate}}</small></h6>
-       
         <p class="small mb-0" [class]="'message_' +i">{{message.message}}</p>
     </div>
     <header>

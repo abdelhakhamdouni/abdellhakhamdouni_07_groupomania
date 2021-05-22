@@ -5,6 +5,8 @@ import { NewPostComponent } from './@components/new-post/new-post.component';
 import { GuardGuard } from './@guard/guard.guard';
 import { HomeModule } from './@modules/home/home.module';
 
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -29,6 +31,7 @@ import { PostCardListComponent } from './@components/post-card-list/post-card-li
 import { lastPostReducers } from './@store/reducers/lastPost.reducers';
 import { MobileNavComponent } from './@components/mobile-nav/mobile-nav.component';
 import { messageReducers } from './@store/reducers/message.reducers';
+
 
 @NgModule({
   declarations: [
