@@ -7,7 +7,14 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    li{
+    .nav-item{
         font-size: .7em;
+        .nav-link{
+            color: rgb(156, 156, 156);
+            &.router-link-active{
+                color: #0056b3;
+            }
+        }
     }
 }
+

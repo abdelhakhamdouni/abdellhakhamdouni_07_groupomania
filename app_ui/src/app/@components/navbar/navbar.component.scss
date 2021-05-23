@@ -27,9 +27,25 @@
     }
 }
 
-@media (max-width: 768px){
+.navbar-collapse{
+    display: inline-flex !important;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    flex-basis: unset;
+    ul{
+        display: inline-flex;
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 767px){
     .navbar{
         position: fixed;
         width: 100vw;
+    }
+    .navbar-collapse{
+        display: none !important;
     }
 }

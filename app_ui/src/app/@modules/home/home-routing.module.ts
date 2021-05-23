@@ -1,3 +1,4 @@
+import { AboutPageComponent } from './about-page/about-page.component';
 import { ChatPageComponent } from './../home/chat-page/chat-page.component';
 import { PostPageComponent } from './post-page/post-page.component';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,8 @@ const routes: Routes = [
   {path:'publication/:id', component: PostPageComponent},
   {path:'membres', component: ListUserPageComponent},
   {path:'profile/:id', component: ProfilePageComponent},
-  {path:'messages', component: ChatPageComponent}
+  {path:'messages', component: ChatPageComponent},
+  {path:'apropos', component: AboutPageComponent},
 ];
 
 @NgModule({

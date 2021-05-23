@@ -12,6 +12,7 @@ import { PostPageComponent } from './post-page/post-page.component';
 import { CommentComponent } from 'src/app/@components/comment/comment.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ListUserPageComponent } from './list-user-page/list-user-page.component';
+import { AboutPageComponent } from './about-page/about-page.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ListUserPageComponent } from './list-user-page/list-user-page.component
     CommentComponent,
     ProfilePageComponent,
     ListUserPageComponent,
-    ChatPageComponent
+    ChatPageComponent,
+    AboutPageComponent
 
   ],
   imports: [
