@@ -124,6 +124,12 @@ export class PostComponent implements OnInit {
     input.focus()
   }
 
+  sharePost(id){
+      let url = `${window.location.protocol}//${window.location.host}/publication/${id}`
+      this.postService.setPostIdToShare(url)
+      this.modal.classList.add('show')
+  }
+
   likePost(id, like) {
     this.postService.likePost(id, like)
     this.postService.getLastPosts()

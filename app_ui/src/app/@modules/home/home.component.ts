@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit {
     })
     this.modal.classList.remove('show')
     this.store.select('post').subscribe(_posts=>  console.log(_posts))
-    
   }
 
   showModal(){

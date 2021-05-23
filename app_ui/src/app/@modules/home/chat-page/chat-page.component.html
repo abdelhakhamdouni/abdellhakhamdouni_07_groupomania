@@ -1,12 +1,15 @@
 <div *ngIf="messages" class="messages">
-    <div *ngFor="let message of messages; let i = index" class="message" [class]="message.UserId === user.id ? 'author' : 'ntAuthor'">
-        <h6 class="small">{{message.User.firstName}} {{message.User.lastName}} <small class="ml-2">{{message.createdAt | mdate}}</small></h6>
-        <p class="small mb-0" [class]="'message_' +i">{{message.message}}</p>
+    <h2 class="text-primary text-center border-bottom text-uppercase h3">
+        Chat room
+    </h2>
+    <div class="message_list">
+        <div *ngFor="let message of messages; let i = index" class="message" [class]="message.UserId === user.id ? 'author' : 'ntAuthor'">
+            <h6 class="small">{{message.User.firstName}} {{message.User.lastName}} <small class="ml-2">{{message.createdAt | mdate}}</small></h6>
+            <p class="small mb-0" [class]="'message_' +i">{{message.message}}</p>
+        </div>
     </div>
-    <header>
         <form class="add-new-post" (submit)="onSubmitMessage($event)">
-            <img src="{{user.avatar}}" alt="avatar">
-            <input type="text" placeholder="Exprimez vous..." id="new-post-input" [formControl]="message">
-        </form>
-    </header>
+        <img src="{{user.avatar}}" alt="avatar">
+        <input type="text" placeholder="Exprimez vous..." id="new-post-input" [formControl]="message">
+    </form>
 </div>

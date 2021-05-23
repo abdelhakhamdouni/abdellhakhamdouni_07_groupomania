@@ -182,11 +182,13 @@ module.exports = {
      */
     deletePost: async (req, res, next) => {
         let postId = req.params.id
-        const post = await Post.findOne({ where: { id: postId } })
+        const post = await Post.findOne({ where: { id: postId }, include:[Comment, Likes] })
         if (post.image !== null) {
             let imagePath = path.join(__dirname, '../uploads/posts_image/' + post.image.trim())
             await fs.unlink(imagePath)
         }
+        post.Comments.forEach(comment=> comment.destroy())
+        post.Likes.forEach(like => like.destroy())
         await post.destroy()
             .then(() => res.status(200).json("post supprimé"))
             .catch(err => res.status(500).json("le post n'as pas pu étre supprimé !", err))

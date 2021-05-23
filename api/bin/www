@@ -26,12 +26,14 @@ app.set('port', port);
  */
 server.listen(port);
 
+let usersConnected = [] 
 
 server.on('error', onError);
 server.on('listening', onListening);
 const io = socketIo(server)
 io.on("connection", socket => {
   console.log('Nouvel utilisateur connecté ... ');
+  usersConnected.push(socket.user)
   socket.on("message", mes => {
     console.log("Mesdsgae ",mes)
     io.emit("new message")

@@ -23,6 +23,7 @@ export class PostService {
   constructor(protected http: HttpClient, private store: Store<AppState>, private userService: UserApiService,) { }
 
   dataUpdated:EventEmitter<any> = new EventEmitter()
+  dataShare:EventEmitter<any> = new EventEmitter()
 
   public getPost(): void {
     this.http.get(this.url)
@@ -94,6 +95,10 @@ export class PostService {
 
   public setPostIdToEdit(data){
     this.dataUpdated.emit(data)
+  }
+
+  public setPostIdToShare(data){
+    this.dataShare.emit(data)
   }
 
   getLastPosts():void{

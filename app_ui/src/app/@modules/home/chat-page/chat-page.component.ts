@@ -21,6 +21,7 @@ export class ChatPageComponent implements OnInit {
   modal: HTMLElement = document.querySelector('.modal')
   message = new FormControl('')
   messages
+  usersConnected
 
   ngOnInit(): void {
     this.mservice.getMessage()
@@ -35,6 +36,9 @@ export class ChatPageComponent implements OnInit {
     console.log(this.messages)
     this.modal.classList.remove('show')
     let socket = io("http://localhost:8000", { transports : ['websocket','polling', 'flashsocket'] }).connect()
+    socket.on("user connected", (listofusers)=>{
+      this.usersConnected = listofusers
+    })
     socket.on('new message', ()=> {
       this.mservice.getMessage()
     })

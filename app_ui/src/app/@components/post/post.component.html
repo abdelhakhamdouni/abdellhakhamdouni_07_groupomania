@@ -40,6 +40,9 @@
             <button class="btn btn-sm btn-light" (click)="commentThisPost(post.id)">
                 <span class="far fa-comment-alt"></span> Commenter 
             </button>
+            <button class="btn btn-sm btn-light" (click)="sharePost(post.id)">
+                <span class="fa fa-share"></span> Partager 
+            </button>
         </div>
         <div class="post__footer-comment" >
             <form [formGroup]="comment" (submit)="submitComment($event)">

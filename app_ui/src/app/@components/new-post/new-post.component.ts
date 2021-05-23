@@ -45,6 +45,14 @@ export class NewPostComponent implements OnInit {
       this.imagepreview = post.image
       this.postId = post.id
     })
+    this.postService.dataShare.subscribe(url =>{
+      if(url){
+        this.postgroup.patchValue({
+          title: 'Post partagé',
+          content: `<a href="${url}">${url}</a>`
+        })
+      }
+    })
   }
   
   postgroup = new FormGroup({
