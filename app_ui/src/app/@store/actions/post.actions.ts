@@ -5,6 +5,7 @@ import Post from '../../models/Post'
 export const LOAD_POSTS= "[POST] LOAD POSTS"
 export const DELETE_POST= "[POST] DELETE POST"
 export const ADD_POST= "[POST] ADD POST"
+export const ADD_COMMENT_To_POST= "[POST] ADD COMMENT TO POST"
 
 
 export class AddPost implements Action{
@@ -24,4 +25,10 @@ export class DeletePost implements Action{
     constructor(public payload){}
 }
 
-export type Actions = AddPost | LoadPosts | DeletePost
+export class AddCommentToPost implements Action{
+    readonly type= ADD_COMMENT_To_POST
+
+    constructor(public payload){}
+}
+
+export type Actions = AddPost | LoadPosts | DeletePost | AddCommentToPost

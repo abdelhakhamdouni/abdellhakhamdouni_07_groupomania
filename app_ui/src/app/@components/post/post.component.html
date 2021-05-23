@@ -46,6 +46,7 @@
         </div>
         <div class="post__footer-comment" >
             <form [formGroup]="comment" (submit)="submitComment($event)">
+                <img [src]="user.avatar" alt="">
                 <input formControlName="commentText" type="text" placeholder="Ecrire un commentaire ..." name="comment" [class]="'post_ '+post.id" [id]="'post_'+post.id">
             </form>
         </div>
