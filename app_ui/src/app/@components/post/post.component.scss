@@ -1,8 +1,9 @@
 .post{
-    border: 1px solid rgba(211, 211, 211, 0.863);
-    box-shadow: 0 0 5px rgb(236, 236, 236);
+    border: 1px solid var(--color-light);
+    box-shadow: 0 0 5px var(--color-light);
     margin-bottom: 1em;
-    background-color: #fff;
+    background-color: var(--bg-post-color);
+    color: var(--text-color-dark);
     border-top: 3px solid var(--primary);
     &.hide{
         height: 4em;
@@ -33,6 +34,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        color: var(--text-color-gray);
+
         //border-bottom: 1px solid rgba(128, 128, 128, 0.356);
         .post__header-details{
             display: flex;
@@ -60,10 +63,14 @@
             position: relative;
             flex-grow: 1;
             text-align: right;
+            button{
+                background-color: var(--bg-color);
+            }
             span{
                 cursor: pointer;
             }
             ul.menu{
+                background-color: var(--bg-color);
                 display: none;
                 &.show{
                     position: absolute;
@@ -72,7 +79,6 @@
                     display: flex;
                     flex-direction: column;
                     list-style: none;
-                    background-color: #fff;
                     border-radius: .2em;
                     box-shadow: 0 0 8px gray;
                     padding: 0;
@@ -102,11 +108,13 @@
             max-height: 10em;
             padding: .5em;
             overflow: hidden;
+            color: var(--text-color-gray);
             .h1 strong, h1 strong{
                 font-size: .5em !important;
             }
             p{
                 margin: .5em 0;
+                color: var(--text-color-gray);
             }
         }
         img{
@@ -122,10 +130,13 @@
             font-size: .8em;
             padding-top: .5em;
             margin: 1em;
+            color: var(--text-color-gray);
+
         }
     }
     .post__footer{
         padding: .5em 1em;
+        color: var(--text-color-gray);
         .metadata{
             display: flex;
             justify-content: space-between;
@@ -136,8 +147,11 @@
             align-items: center;
             font-size: .7em;
             padding: 0 3em;
+            button{
+                color: var(--text-color-gray);
+            }
             span{
-                color: rgb(136, 136, 136);
+                color: var(--text-color-gray);
             }
         }
         .post__footer-comment{

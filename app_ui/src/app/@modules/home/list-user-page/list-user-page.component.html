@@ -17,10 +17,10 @@
             <section>
 
                 <div class="detail">
-                    <p><strong class="font-weigt-bold text-dark">Inscrit:</strong> <span>{{profil.createdAt|mdate}}</span> <span class="fa fa-calendar"></span></p>
-                    <p *ngIf="profil.Posts"><strong class="font-weigt-bold text-dark">Postes en lignes:</strong> <span>{{profil.Posts.length}}</span> <span class="fa fa-image"></span></p>
-                    <p *ngIf="profil.Posts"><strong class="font-weigt-bold text-dark">Commentaires:</strong> <span>{{profil.Comments.length}}</span> <span class="fa fa-comment-alt"></span></p>
-                    <p class="small text-left"><strong class="font-weigt-bold text-dark">A propos:</strong> {{profil.bio}}</p>
+                    <p><strong class="font-weigt-bold">Inscrit:</strong> <span>{{profil.createdAt|mdate}}</span> <span class="fa fa-calendar"></span></p>
+                    <p *ngIf="profil.Posts"><strong class="font-weigt-bold">Postes en lignes:</strong> <span>{{profil.Posts.length}}</span> <span class="fa fa-image"></span></p>
+                    <p *ngIf="profil.Posts"><strong class="font-weigt-bold">Commentaires:</strong> <span>{{profil.Comments.length}}</span> <span class="fa fa-comment-alt"></span></p>
+                    <p class="small text-left"><strong class="font-weigt-bold">A propos:</strong> {{profil.bio}}</p>
                 </div>
                 <div class="action">
                     <!-- <button *ngIf="profil.id === user.id" class="btn btn-sm btn-primary"><span

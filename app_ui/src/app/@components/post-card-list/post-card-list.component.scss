@@ -3,10 +3,12 @@
     overflow-y: auto;
     overflow-x: hidden;
     margin-top: 1em;
-    background-color: #fff;
+    background-color: var(--bg-color);
     padding: 0 .5em;
+    border: 1px solid var(--border-color);
     h5{
-        box-shadow: 0 2px 5px black;
+        background-color: var(--bg-color);
+        color: var(--text-color-gray);
     }
 }
 

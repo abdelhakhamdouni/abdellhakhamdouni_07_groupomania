@@ -1,5 +1,5 @@
 <div class="profile list">
-    <h5>Liste des membres</h5>
+    <h5 class="text-primary">Liste des membres</h5>
     <div  *ngFor="let user of users|async; let i= index">
         <app-user-card [profil]="user" ></app-user-card>
     </div>

@@ -1,9 +1,10 @@
 .new-post{
-    background-color: #fff;
+    background-color: var(--bg-color);
     padding: 1em;
     width: 40vw;
     max-height: 90vh;
     overflow: auto;
+    color: var(--text-color-gray);
     header{
         display: flex;
         justify-content: space-between;
@@ -25,7 +26,7 @@
             margin: .5em 0;
         }
         textarea{
-            border: 1px solid lightgray;
+            border: 1px solid var(--border-color);
             resize: none;
             width: 100%;
         }
@@ -40,17 +41,17 @@
             label{
                 line-height: 2em;
                 cursor: pointer;
-                border: 1px solid orangered;
+                border: 1px solid var(--text-color-gray);
                 border-radius: 1em;
                 margin-top: 1em;
                 box-shadow: 2px 2px 5px rgba(94, 94, 94, 0.521);
                 padding: 0 .5em;
-                background-color: rgba(255, 237, 231, 0.801);
+                background-color: var(--bg-color);
                 transition: .2s;
                 &:hover{
                     background-color: orangered ;
                     span{
-                        color: rgb(255, 255, 255);
+                        color: var(--text-color-gray);
                     }
                 }
             }
@@ -59,7 +60,7 @@
             }
             .fa{
                 margin-top: .5em;
-                color: orangered;
+                color: var(--text-color-gray);
                 transition: .3s;
                 margin-right: 5px;
             }
@@ -84,7 +85,7 @@
             border: none;
             background-color:#0084ff;
             padding: .5em 1em;
-            color: white;
+            color: var(--text-color-gray);
             cursor: pointer;
             &:hover{
                 background-color: darken($color: #0084ff, $amount: 20);
@@ -95,7 +96,7 @@
             display: flex;
             flex-direction: row !important;
             width: 100%;
-            color: gray;
+            color: var(--text-color-gray);
             font-size: .7em;
             margin-top: 1em;
             span{
@@ -108,10 +109,13 @@
         width: 100%;
         display: flex;
         flex-direction: column;
+        background-color: var(--bg-color);
+        border: 1px solid var(--border-color);
         small{
             margin-top: 1em;
             font-size: .7em;
             font-weight: 300;
+            color: var(--text-color-gray)
         }
     }
 }
@@ -119,6 +123,7 @@ h2{
     text-align: center;
     margin: 0;
     padding: 0;
+    color: var(--text-color-gray)
 }
 
 @media (max-width: 768px) {

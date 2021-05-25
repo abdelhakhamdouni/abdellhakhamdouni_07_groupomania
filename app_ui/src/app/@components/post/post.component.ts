@@ -75,8 +75,8 @@ export class PostComponent implements OnInit {
           this.postService.getLastPosts()
         }
         else{
-         this.postService.getPost()
-          this.postService.getLastPosts()
+          this.router.navigateByUrl('/publication/' + this.post.id)
+
         }
       }
     )

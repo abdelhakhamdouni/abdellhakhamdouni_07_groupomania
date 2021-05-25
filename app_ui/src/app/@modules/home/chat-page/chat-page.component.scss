@@ -15,11 +15,11 @@
     display: flex;
     justify-content: center;
     padding: 1em;
-    background-color: #fff;
-    border-bottom: 1px solid rgb(196, 195, 195);
+    background-color: var(--bg-color);
+    border-top: 1px solid var(--border-color);
     input{
         flex-grow: 1;
-        border: 1px solid lightgray;
+        border: 1px solid var(--border-color);
         border-radius: 1em;
         padding-left: 1em;
         background-color: var(--light);
@@ -41,10 +41,10 @@
     padding-bottom: 15em;
     .message{
         width: 85%;
-        border: 1px solid gray;
+        border: 1px solid var(--border-color);
         margin: .5em 0;
-        background-color: #0677d4;
-        color: white;
+        background-color: var(--primary);
+        color: var(--text-color-gray);
         border-radius: 0 1em 1em;
         padding: .5em;
         h6{
@@ -73,11 +73,11 @@
                 display: flex;
                 justify-content: center;
             padding: 1em;
-            background-color: #fff;
-            border-bottom: 1px solid rgb(196, 195, 195);
+            background-color: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
             input{
                 flex-grow: 1;
-                border: 1px solid lightgray;
+                border: 1px solid var(--border-color);
                 border-radius: 1em;
                 padding-left: 1em;
                 background-color: var(--light);

@@ -40,8 +40,10 @@ export class ProfilePageComponent implements OnInit {
       this.store.select('oneUser').subscribe(user => {
         console.log(user)
         this.profil = user as User
+        
         this.imagepreview = user.avatar
         this.modal.classList.remove('show')
+
       })
       this.userService.getUser().subscribe(user => this.userLogged = user as User)
     })
@@ -60,6 +62,7 @@ export class ProfilePageComponent implements OnInit {
   confirmForm = new FormGroup({
     password: new FormControl('')
   })
+
   
   preview(event) {
     let files = event.target.files;
@@ -78,6 +81,10 @@ export class ProfilePageComponent implements OnInit {
       reader.onload = (_event) => { 
         this.imagepreview = reader.result; 
       }
+      let formData = new FormData()
+      formData.append('image', files[0])
+      this.userService.updateAvatar( this.profil.id,formData)
+      this.changeMode()
     }
   }
 
@@ -105,6 +112,16 @@ export class ProfilePageComponent implements OnInit {
         }
       })
     }
+  }
+
+  editProfile(e){
+    e.preventDefault
+    let editFullNameInput:HTMLInputElement = document.querySelector('#edit-fullName')
+    let [ firstName, lastName ] = editFullNameInput.value.split(' ')
+    console.log(editFullNameInput.value.split(' '))
+    this.userService.updateUSerFullName(this.profil.id, {firstName, lastName})
+    this.changeMode()
+
   }
 
 

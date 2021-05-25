@@ -24,4 +24,8 @@
       </ul>
     </div>
   </div>
+  <div class="d-flex flex-row">
+    <span>Theme: </span>
+    <label class="checkbox-show" [class]="theme === 'dark' ? 'dark' : 'light'" for="checkbox" (click)="changeTheme()"><span></span></label>
+  </div>
 </nav>

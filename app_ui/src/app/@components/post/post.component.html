@@ -33,14 +33,14 @@
             </div>
         </div>
         <div class="post__footer-actions border-top pt-1">
-            <button class="btn btn-sm btn-light" (click)="likePost(post.id, like)" >
+            <button class="btn btn-sm" (click)="likePost(post.id, like)" >
                 <span *ngIf="liked == ''"><span class="far fa-thumbs-up" ></span> J'aime</span>
                 <span class="liked" *ngIf="liked != ''"><span class="far fa-thumbs-up liked" ></span> J'aime</span>
             </button>
-            <button class="btn btn-sm btn-light" (click)="commentThisPost(post.id)">
+            <button class="btn btn-sm" (click)="commentThisPost(post.id)">
                 <span class="far fa-comment-alt"></span> Commenter 
             </button>
-            <button class="btn btn-sm btn-light" (click)="sharePost(post.id)">
+            <button class="btn btn-sm" (click)="sharePost(post.id)">
                 <span class="fa fa-share"></span> Partager 
             </button>
         </div>

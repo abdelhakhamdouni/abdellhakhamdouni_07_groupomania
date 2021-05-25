@@ -1,19 +1,20 @@
 .comment{
     display: flex;
-    background-color: #fff;
+    background-color: var(--bg-color);
     width: 100%;
     padding: .5em;
     margin-bottom: .5em;
     position: relative;
     border-radius: 0 1em 1em 0;
     margin-top: 1em;
+    border: 1px solid var(--border-color);
     .comment_image {
         img{
             width: 35px;
             height: 35px;
             margin-right: 1em;
             border-radius: 50%;
-            box-shadow: 0 0 5px rgb(223, 223, 223);
+            box-shadow: 0 0 5px var(--bodrer-color);
         }
     }
     .comment-body{
@@ -24,12 +25,12 @@
                 margin-right: .5em;
                 font-size: .8em;
                 &:last-of-type{
-                    color: rgb(3, 40, 245);
+                    color: var(--primary);
                 }
             }
         }
         .comment-comment{
-            color: rgb(63, 62, 62);
+            color: var(--text-color-gray);
             font-size: .8em;
         }
         .comment-footer{
@@ -52,6 +53,7 @@
     right: 1em;
     span{
         cursor: pointer;
+        color: var(--text-color-gray)
     }
     ul{
         width: 15em;
@@ -64,9 +66,8 @@
             flex-direction: row;
             justify-content: center;
             list-style: none;
-            background-color: #fff;
-            border-radius: .2em;
-            box-shadow: 0 0 8px rgb(192, 192, 192);
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
             padding: 0;
             li{
                 display: flex;
@@ -78,7 +79,7 @@
                     font-size: .7em;
                 }
                 &:hover{
-                    background-color: rgb(240, 240, 240);
+                    background-color: var(--bg-color);
                 }
             }
         }
@@ -89,18 +90,18 @@
     position: relative;
     &::after{
         content: "";
-        border-bottom: 2px solid #aaaaaa;
+        border-bottom: 2px solid var(--border-color);
         position: absolute;
-        left: -1.7em;
+        left: -1.4em;
         top: calc(50% - 1px);
         width: 5em;
         z-index: -1;
     }
     &::before{
         content: "";
-        border-left: 2px solid #aaaaaa;
+        border-left: 2px solid var(--border-color);
         position: absolute;
-        left: -1.7em;
+        left: -1.4em;
         top: calc(-50% - 1em);
         height: calc(100% + 1em);
         z-index: -1;
@@ -109,7 +110,7 @@
 
 .comment__footer-comment{
     input{
-        font-size: 1em;
+        font-size: .8em;
         width: 100%;
         padding: .2em 1em;
         border: 1px solid lightgray;
@@ -130,5 +131,11 @@
 @media (max-width: 768px){
     .comment{
         margin-top: 0;
+    }
+
+    .child{
+        &::before, &::after{
+            left: -1em
+        }
     }
 }

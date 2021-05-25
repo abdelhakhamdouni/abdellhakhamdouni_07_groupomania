@@ -1,4 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+    --bg-color: #f7f6fc;
+    --bg-post-color: #ffffff;
+    --text-color-gray: #2e2e2e;
+    --color-light: #eee;
+    --border-color: rgb(212, 212, 212);
+}
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: rgba(220, 229, 233, 0.644);}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: var(--bg-color);}
+img{
+    object-fit: cover;
+}
+[data-theme="dark"]{
+    --bg-color: #323232;
+    --bg-post-color: #444444;
+    --text-color-gray: #e4e4e4;
+    --color-light: rgb(104, 104, 104);
+    --primary: #979797;
+    --border-color: rgb(100, 100, 100);
+}

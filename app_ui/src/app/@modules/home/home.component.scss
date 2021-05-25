@@ -9,8 +9,9 @@
         width: 100%;
     }
     header{
-        background-color: #fff;
-        box-shadow: 0 0 3px rgb(212, 211, 211);
+        background-color: var(--bg-post-color);
+        box-shadow: 0 0 3px var(--color-light);
+        border: 1px solid var(--bodrer-color);
         margin-bottom: 1em;
         h3{
             color: #1e81d2;
@@ -28,7 +29,7 @@
         border: 1px solid lightgray;
         border-radius: 1em;
         padding-left: 1em;
-        background-color: var(--light);
+        background-color: var(--bg-color);
     }
     
     img{

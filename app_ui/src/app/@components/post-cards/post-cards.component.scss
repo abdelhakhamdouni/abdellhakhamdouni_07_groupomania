@@ -1,6 +1,6 @@
 .post-card{
     margin: .5em 0;
-    background-color: rgb(241, 241, 241);
+    background-color: var(--bg-color);
     cursor: pointer;
     max-height: 10em;
     overflow: hidden;
@@ -12,11 +12,16 @@
     .content{
         max-height: 0;
         font-size: .8em;
+        color: var(--text-color-gray);
         p{
             margin-bottom: 0 !important;
             padding: 0;
         }
     }
+}
+.small{
+    color: var(--text-color-gray);
+    font-weight: bold;
 }
 
 @media (max-width: 990px) {

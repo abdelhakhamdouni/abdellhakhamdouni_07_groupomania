@@ -7,6 +7,7 @@ const multer = require('../middlewares/multer')
 /* GET home page. */
 router.get('/:id', checkToken, userCtrl.getOneUser);
 router.get('/', userCtrl.getAllUsers);
+router.put('/edit/fullName/:id', checkToken, userCtrl.updateUserFullName);
 router.put('/edit/avatar/:id', checkToken, multer, userCtrl.updateUserAvatar);
 router.put('/edit/password/:id', checkToken, userCtrl.updateUserPassword);
 

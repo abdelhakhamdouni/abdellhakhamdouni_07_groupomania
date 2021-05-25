@@ -32,4 +32,16 @@ export class UserApiService {
     })
   }
 
+  updateUSerFullName(id, obj):void{
+    this.http.put(this.url + 'edit/fullName/'+id, obj).subscribe(res =>{
+      this.getUserFromApi(id)
+    })
+  }
+
+  updateAvatar(id, formData):void{
+    this.http.put(this.url + 'edit/avatar/'+id, formData).subscribe(res =>{
+      this.getUserFromApi(id)
+    })
+  }
+
 }

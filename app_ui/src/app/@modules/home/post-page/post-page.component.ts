@@ -1,5 +1,5 @@
-import { ActivatedRoute } from '@angular/router';
-import  Post  from 'src/app/models/Post';
+import { Router, ActivatedRoute } from '@angular/router';
+import Post from 'src/app/models/Post';
 import { Observable } from 'rxjs';
 import { UserApiService } from './../../../@services/user-api.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,30 +14,32 @@ import { AppState } from 'src/app/AppState';
 })
 export class PostPageComponent implements OnInit {
 
-  
-  constructor(private postService: PostService, private userService: UserApiService, private store: Store<AppState>, private router: ActivatedRoute) { }
 
-  post:Post;
+  constructor(private postService: PostService, private userService: UserApiService, private store: Store<AppState>, private activateRouter: ActivatedRoute, private router: Router) { }
+
+  post: Post;
   user;
   modal: HTMLElement = document.querySelector('.modal')
   id: number
 
   ngOnInit(): void {
     this.postService.getPost()
-    this.router.params.subscribe(params=>{
+    this.activateRouter.params.subscribe(params => {
       this.id = params['id']
       this.postService.getOnePostById(this.id)
       this.store.select('onePost').subscribe(post => {
         this.post = post as Post
-      })
-    })
-      this.userService.getUser().subscribe(user => {
-        this.user = user
-      })
+        this.userService.getUser().subscribe(user => {
+          this.user = user
+        })
         this.modal.classList.remove('show')
+
+      }
+      )
+    })
   }
 
-  showModal(){
+  showModal() {
     document.querySelector('input').blur()
     this.modal.classList.add('show')
   }

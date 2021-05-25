@@ -16,11 +16,24 @@ export class NavbarComponent implements OnInit {
   image:string = '/assets/images/icon.svg'
   user: User
   path: string
+  theme: string
 
   ngOnInit(): void {
     this.userService.getUser().subscribe(user=> this.user = user)
     this.navService.getUrl().subscribe(path => console.log(path))
-    
+    localStorage.getItem('theme') === 'dark' ? this.theme = "dark" : this.theme = "light"
+  }
+
+  changeTheme(){
+    if(document.body.dataset.theme === "light") {
+      document.body.dataset.theme = "dark" 
+      localStorage.setItem('theme', "dark")
+      this.theme = 'dark'
+    }else{
+      document.body.dataset.theme ="light" 
+      localStorage.setItem('theme', "light")
+      this.theme = 'light'
+    }
   }
 
 

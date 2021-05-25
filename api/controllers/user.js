@@ -1,3 +1,5 @@
+const fs = require('fs').promises
+const path = require('path')
 const User = require('../models').User
 const Post = require('../models').Post
 const Comment = require('../models').Comment
@@ -29,12 +31,19 @@ module.exports = {
     },
 
     updateUserAvatar: async (req, res, next) => {
-        let id = req.body.userId
+        let id = req.params.id
+
+        let user = await User.findByPk(id)
+        if(!user.image){            
+            fs.unlink(path.join(__dirname, '/uploads/users_avatar/'+user.image))
+        }
         User.update({ avatar: req.file.filename }, { where: { id: id } }
         )
             .then(() => res.status(200).json({ succes: "user updated" }))
             .catch(() => res.status(500).json({ err_handler: "UPDATE_USER", err: "user introubale" }))
     },
+
+
     updateUserPassword: async (req, res, next) => {
         let id = req.body.id
         let password = req.body.password
@@ -46,9 +55,21 @@ module.exports = {
             else {
                 User.update({ password: hash }, { where: { id: id } })
                     .then(() => res.status(200).json({ success: "user updated" }))
-                    .catch(() => res.status(500).json({ err_handler: "UPDATE_PASSWORD_USER", err: "user introubale" }))
+                    .catch((err) => res.status(500).json({ err_handler: "UPDATE_PASSWORD_USER", err: err }))
             }
         })
+    },
+
+    updateUserFullName: async (req, res, next) => {
+        let id = req.params.id
+        console.log(req.body)
+        User.update({ lastName: req.body.lastName, firstName: req.body.firstName }, { where: { id: id } }
+        )
+            .then(() => res.status(200).json({ succes: "user updated" }))
+            .catch((err) => {
+                console.log(err)
+                res.status(500).json({ err_handler: "UPDATE_USER", err: err})
+            })
     },
 
 

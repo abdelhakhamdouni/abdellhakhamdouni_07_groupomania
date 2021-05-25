@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UserApiService } from './user-api.service';
 import { Injectable, EventEmitter  } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -20,7 +21,7 @@ export class PostService {
 
   posts: Post[]
 
-  constructor(protected http: HttpClient, private store: Store<AppState>, private userService: UserApiService,) { }
+  constructor(protected http: HttpClient, private store: Store<AppState>, private userService: UserApiService, private router: Router) { }
 
   dataUpdated:EventEmitter<any> = new EventEmitter()
   dataShare:EventEmitter<any> = new EventEmitter()
@@ -47,11 +48,18 @@ export class PostService {
 
   getOnePostById(id): void{
     this.http.get(this.url+id).subscribe((post: Post)=>{
+      if(!post){
+        alert("error post " + post)
+      }
       post.Comments = post.Comments.sort((a,b)=>{
         return a.CommentId - b.CommentId
       }) 
       this.store.dispatch(new OnePostAction.LoadPost(post as Post))
-    })
+    },
+      err => {
+        alert("ce poste n'existe plus !")
+        this.router.navigateByUrl('/')}
+    )
   }
 
 
@@ -105,6 +113,10 @@ export class PostService {
     this.http.get(this.url+'lasts/').subscribe(posts => {
       this.store.dispatch(new LastPostAction.LoadLastPost(posts as Post[]))
     })
+  }
+
+  public addCommentToPost(obj){
+    
   }
 
 }

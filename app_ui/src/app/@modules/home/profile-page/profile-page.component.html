@@ -8,14 +8,15 @@
             </div>
         </header>
         <section>
-            <div class="detail">
+            <div class="detail text-center">
+                <h2 *ngIf="!modeEdit">{{profil.firstName}} {{profil.lastName}}</h2>
                 <h2 *ngIf="modeEdit">{{profil.firstName}} {{profil.lastName}}</h2>
                 <div *ngIf="modeEdit">
-                    <div class="form-group d-flex">
-                        <input class="form-control" [value]="profil.firstName +' '+ profil.lastName"> 
-                    </div>
+                    <form  class="form-group d-flex" (submit)="editProfile($event)">
+                        <input id="edit-fullName" class="form-control"  [value]="profil.firstName.trim()+' '+profil.lastName.trim()"> 
+                        <button *ngIf="modeEdit" class="btn btn-primary" >Valider</button>
+                    </form>
                 </div>
-                <button *ngIf="modeEdit" class="btn btn-primary" >Valider</button>
                 <button *ngIf="modeEdit" class="btn btn-danger ml-2" (click)="changeMode()">Annuler</button>
                 <div class="badge" *ngIf="!modeEdit">
                     <p *ngIf="profil.isAdmin">
@@ -44,13 +45,12 @@
             </div>
         </section>
     </article>
-    <h2>Listes des publication: <span *ngIf="profil.Posts">{{profil.Posts.length}}</span></h2>
+    <h2 class="text-primary text-center">Listes des publication: <span *ngIf="profil.Posts">{{profil.Posts.length}}</span></h2>
     <div *ngIf="profil.Posts">
         <div *ngFor="let post of profil.Posts; let i = index">
             <article class="post" [class]="'post_parent_' + post.id" [id]="post.id">
                 <header class="post__header">
                     <div class="post__header-details">
-                        <img src={{profil.avatar}} alt="">
                         <div class="metadata">
                             <span class="date">{{post.createdAt | mdate}}</span>
                             <span class="autre"></span>

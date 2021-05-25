@@ -27,11 +27,13 @@ export class NewPostComponent implements OnInit {
   userLogged;
   update: boolean = false
   postId:number
+  title: string = "Ajouter une publication"
   
   
   constructor(private userService: UserApiService, private postService: PostService, private sanitizer: DomSanitizer, private router: Router, private store: Store<AppState>) { }
   
   ngOnInit(): void {
+    this.title = "Ajouter une publication"
     this.deleteImage()
     this.userService.getUser().subscribe(user=> this.userLogged = user)
     this.closeModal()
@@ -44,6 +46,7 @@ export class NewPostComponent implements OnInit {
       })
       this.imagepreview = post.image
       this.postId = post.id
+      this.title = "Editer une publication"
     })
     this.postService.dataShare.subscribe(url =>{
       if(url){
@@ -51,6 +54,7 @@ export class NewPostComponent implements OnInit {
           title: 'Post partagé',
           content: `<a href="${url}">${url}</a>`
         })
+        this.title = "Partager une publication"
       }
     })
   }
