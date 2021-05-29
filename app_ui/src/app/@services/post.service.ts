@@ -99,6 +99,7 @@ export class PostService {
     }).subscribe(res => {
       // this.getPost()
       this.getLastPosts()
+      this.getLastLikes()
     })
   }
 

@@ -1,11 +1,11 @@
 import Post from 'src/app/models/Post'
-import * as LastPostAction from '../actions/lastPost.actions'
+import * as LastLikesAction from '../actions/lastLikes.actions'
 
 const initialState: Post[] = []
 
-export function lastLikesReducers(state = initialState, action: LastPostAction.Actions) {
+export function lastLikesReducers(state = initialState, action: LastLikesAction.Actions) {
     switch (action.type) {
-        case LastPostAction.LOAD_LAST_POST:
+        case LastLikesAction.LOAD_LAST_LIKES:
             state = action.payload
             return state
         default:
