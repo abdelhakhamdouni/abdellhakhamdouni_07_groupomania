@@ -13,10 +13,13 @@ export class PostCardListComponent implements OnInit {
 
   constructor( private postService: PostService ,private store: Store<AppState>) { }
   _posts
+  _likes
 
   ngOnInit(): void {
     this.postService.getLastPosts()
     this.store.select('lastPosts').subscribe(posts => this._posts = posts)
+    this.postService.getLastLikes()
+    this.store.select('lastLikes').subscribe(likes => this._likes = likes)
 }
 
 }

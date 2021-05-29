@@ -9,5 +9,4 @@ export class LoadLastPost implements Action{
 
      constructor(public payload: Post[]){}
 }
-
 export type Actions = LoadLastPost

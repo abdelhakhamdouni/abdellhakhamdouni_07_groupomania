@@ -7,6 +7,7 @@ import Post from '../models/Post';
 import * as PostAction from '../@store/actions/post.actions'
 import * as OnePostAction from '../@store/actions/onePost.actions'
 import * as LastPostAction from '../@store/actions/lastPost.actions'
+import * as LastLikesAction from '../@store/actions/lastLikes.actions'
 import { Store } from '@ngrx/store';
 import { AppState } from '../AppState';
 import { map } from 'rxjs/operators';
@@ -110,14 +111,17 @@ export class PostService {
   }
 
   getLastPosts():void{
-    this.http.get(this.url+'lasts/').subscribe(posts => {
+    this.http.get('http://localhost:8000/api/last/posts').subscribe(posts => {
       this.store.dispatch(new LastPostAction.LoadLastPost(posts as Post[]))
     })
   }
 
-  public addCommentToPost(obj){
-    
+  getLastLikes():void{
+    this.http.get('http://localhost:8000/api/last/likes').subscribe(likes => {
+      this.store.dispatch(new LastLikesAction.LoadLastLikes(likes as any[]))
+    })
   }
+
 
 }
 

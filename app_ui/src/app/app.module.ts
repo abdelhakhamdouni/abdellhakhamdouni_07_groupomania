@@ -1,11 +1,9 @@
 import { ApiInterceptorInterceptor } from './@interceptor/api-interceptor.interceptor';
 import { UserCardComponent } from './@components/user-card/user-card.component';
-import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NewPostComponent } from './@components/new-post/new-post.component';
 import { GuardGuard } from './@guard/guard.guard';
 import { HomeModule } from './@modules/home/home.module';
-
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -31,6 +29,7 @@ import { PostCardListComponent } from './@components/post-card-list/post-card-li
 import { lastPostReducers } from './@store/reducers/lastPost.reducers';
 import { MobileNavComponent } from './@components/mobile-nav/mobile-nav.component';
 import { messageReducers } from './@store/reducers/message.reducers';
+import { lastLikesReducers } from './@store/reducers/lastLikes.reducers';
 
 
 @NgModule({
@@ -60,7 +59,8 @@ import { messageReducers } from './@store/reducers/message.reducers';
       onePost: onePostReducers,
       oneUser: oneUserReducers,
       lastPosts: lastPostReducers,
-      message: messageReducers
+      lastLikes: lastLikesReducers,
+      message: messageReducers,
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
     

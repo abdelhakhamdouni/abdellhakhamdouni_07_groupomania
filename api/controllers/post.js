@@ -212,5 +212,17 @@ module.exports = {
             if (response) res.status(201).json("ok")
             else res.status(200).json({ err: "impossible de créer le like" })
         }
+    },
+
+    getLastLikes: async (req, res) =>{
+        let likes = await Likes.findAll({limit: 5, order:[["createdAt", "DESC"]], include:[Post, User]})
+        if(likes){
+            res.status(200).json(likes)
+        }
+        else{
+            console.log("error get last likes ")
+            res.status(500).json({err: "cant get last likes "})
+        }
+
     }
 }
