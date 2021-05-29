@@ -3,8 +3,8 @@ import * as LastPostAction from '../actions/lastPost.actions'
 
 const initialState: Post[] = []
 
-export function lastPostReducers(state = initialState, action: LastPostAction.Actions){
-    switch (action.type){
+export function lastPostReducers(state = initialState, action: LastPostAction.Actions) {
+    switch (action.type) {
         case LastPostAction.LOAD_LAST_POST:
             state = action.payload
             return state
