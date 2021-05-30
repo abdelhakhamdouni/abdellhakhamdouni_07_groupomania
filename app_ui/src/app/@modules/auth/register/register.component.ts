@@ -25,7 +25,6 @@ export class RegisterComponent implements OnInit {
   })
 
   chooseImage(event){
-    console.log(event.target.files[0])
     this.avatar = event.target.files[0]
     let name = event.target.files[0].name.slice(0,20)
     this.avatar_url =  name

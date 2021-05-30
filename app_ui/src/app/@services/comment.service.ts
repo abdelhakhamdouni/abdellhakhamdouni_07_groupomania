@@ -9,7 +9,7 @@ import { UserApiService } from './user-api.service';
 })
 export class CommentService {
 
-  url: string = "http://localhost:8000/api/comments/"
+  url: string = "https://ormes-web-service.fr/gpapp/api/comments/"
 
 
   constructor(protected http: HttpClient, private postService: PostService, private userService: UserApiService,) { }

@@ -18,7 +18,6 @@ export class PostCardsComponent implements OnInit {
   }
 
   showPost(id) {
-    console.log(id)
     this.router.navigateByUrl(`/publication/${id}`)
   }
 

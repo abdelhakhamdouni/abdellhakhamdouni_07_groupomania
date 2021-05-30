@@ -2,9 +2,8 @@ import { Store } from '@ngrx/store';
 import { FormControl } from '@angular/forms';
 import User from 'src/app/models/User';
 import { UserApiService } from './../../../@services/user-api.service';
-import { Component, OnInit, AfterViewInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { MessageService } from 'src/app/@services/message.service';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { AppState } from 'src/app/AppState';
 import { io } from 'socket.io-client';
 
@@ -26,16 +25,14 @@ export class ChatPageComponent implements OnInit {
   ngOnInit(): void {
     this.mservice.getMessage()
     this.userService.getUser().subscribe(user => {
-      console.log(user)
       this.user = user
     })
     this.store.select('message').subscribe(messages => {
-      console.log(messages)
+
       this.messages = messages 
     })
-    console.log(this.messages)
     this.modal.classList.remove('show')
-    let socket = io("http://localhost:8000", { transports : ['websocket','polling', 'flashsocket'] }).connect()
+    let socket = io("https://ormes-web-service.fr/gpapp", { transports : ['websocket','polling', 'flashsocket'] }).connect()
     socket.on("user connected", (listofusers)=>{
       this.usersConnected = listofusers
     })
@@ -46,10 +43,8 @@ export class ChatPageComponent implements OnInit {
   }
   
   ngAfterViewInit(){
-    console.log('init')
     let divMessage:HTMLElement = document.querySelector('.messages')
     divMessage.scrollTop = 300
-    console.log(divMessage.scrollHeight, divMessage.clientHeight)
     
   }
 

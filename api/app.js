@@ -18,3 +18,9 @@ app.use('/uploads',express.static(path.join(__dirname, '/uploads')));
 app.use('/api', router);
 
 module.exports = app;
+
+
+addToPrice(index){
+    let teddyPrice = cartStorage[index].price
+    // le rest du script....
+}

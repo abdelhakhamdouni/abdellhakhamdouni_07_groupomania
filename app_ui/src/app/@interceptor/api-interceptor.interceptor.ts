@@ -16,7 +16,7 @@ export class ApiInterceptorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
     request = request.clone({
       setHeaders: {
-        Authorisation: 'Bearer ' + sessionStorage.getItem('token'),
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       }
     })
     return next.handle(request)

@@ -12,7 +12,7 @@ import { AppState } from '../AppState';
 })
 export class UserApiService {
 
-  url: string = "http://localhost:8000/api/users/"
+  url: string = "https://ormes-web-service.fr/gpapp/api/users/"
 
   constructor(private http: HttpClient, private store: Store<AppState>) { }
 
@@ -27,19 +27,23 @@ export class UserApiService {
   }
   getUserFromApi(id){
     this.http.get(this.url+id).subscribe(user =>{
-      console.log(user)
       this.store.dispatch(new OneUserAction.LoadOneUser(user as User))
     })
   }
 
   updateUSerFullName(id, obj):void{
-    this.http.put(this.url + 'edit/fullName/'+id, obj).subscribe(res =>{
+    this.http.put(this.url + 'edit/fullName/'+id, obj).subscribe((res) =>{
       this.getUserFromApi(id)
+      this.getUsers()
     })
   }
 
   updateAvatar(id, formData):void{
     this.http.put(this.url + 'edit/avatar/'+id, formData).subscribe(res =>{
+      this.http.get(this.url+id).subscribe(user =>{
+        sessionStorage.setItem('user', JSON.stringify(user))
+        this.getUsers()
+      })
       this.getUserFromApi(id)
     })
   }

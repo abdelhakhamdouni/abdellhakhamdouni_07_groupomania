@@ -30,6 +30,7 @@ import { lastPostReducers } from './@store/reducers/lastPost.reducers';
 import { MobileNavComponent } from './@components/mobile-nav/mobile-nav.component';
 import { messageReducers } from './@store/reducers/message.reducers';
 import { lastLikesReducers } from './@store/reducers/lastLikes.reducers';
+import { logedUserReducers } from './@store/reducers/logedUser.reducers';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { lastLikesReducers } from './@store/reducers/lastLikes.reducers';
       user: userReducers,
       onePost: onePostReducers,
       oneUser: oneUserReducers,
+      logedUser: logedUserReducers,
       lastPosts: lastPostReducers,
       lastLikes: lastLikesReducers,
       message: messageReducers,

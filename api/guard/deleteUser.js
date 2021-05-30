@@ -7,8 +7,10 @@ const bcrypt = require('bcrypt')
 module.exports =  async (req, res) => {
     let id = req.params.id
     let password = req.body.password
+    let adminId = req.body.id
+    let admin = await User.findByFk(adminId)
     let user = await User.findOne({where: {id}, include:[Post]})
-    bcrypt.compare(password, user.password, async (err) => {
+    bcrypt.compare(password, admin.password, async (err) => {
         if(!err){
             if(user.Posts && user.Posts.length > 0){
                 user.Posts.forEach(post=>{

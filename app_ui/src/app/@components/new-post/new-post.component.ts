@@ -38,7 +38,6 @@ export class NewPostComponent implements OnInit {
     this.userService.getUser().subscribe(user=> this.userLogged = user)
     this.closeModal()
     this.postService.dataUpdated.subscribe(post => {
-      console.log(post)
       if(post) this.update = true
       this.postgroup.patchValue({
         title: post.title,
@@ -75,7 +74,6 @@ export class NewPostComponent implements OnInit {
     let files = event.target.files;
     if (files.length === 0)
       return;
-    console.log(files[0].type)
     var mimeType = files[0].type;
     if(this.MIME_TYPES.indexOf(mimeType) === -1){
       this.error = "Only images are supported.";
@@ -118,7 +116,6 @@ export class NewPostComponent implements OnInit {
       return
     }
     else{
-      console.log("save post")
       this.postService.savePost(formData)
       .subscribe(res=> {
         if(res){{
@@ -159,7 +156,6 @@ export class NewPostComponent implements OnInit {
       return
     }
     else{
-      console.log("update post")
       this.postService.updatePost(formData, this.postId)
       .subscribe((posts)=> {
           this.store.dispatch(new PostActions.LoadPosts(posts))

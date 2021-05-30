@@ -6,6 +6,7 @@ export interface AppState{
     readonly onePost: Post
     readonly user:User[]
     readonly oneUser: User
+    readonly logedUser: User
     readonly lastPosts: Post[]
     readonly lastLikes: any[]
     readonly message: []

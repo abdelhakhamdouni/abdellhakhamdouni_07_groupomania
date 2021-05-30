@@ -21,7 +21,6 @@ export class ListUserPageComponent implements OnInit {
   ngOnInit(): void {
     this.modal.classList.remove('show')
     this.store.select('user').subscribe(users=> {
-      console.log(users)
       this.users = users
     })
     this.userService.getUser().subscribe(user => this.user = user)

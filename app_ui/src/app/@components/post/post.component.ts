@@ -69,10 +69,9 @@ export class PostComponent implements OnInit {
     }).subscribe(
       () => {
        this.comment.controls.commentText.setValue('')
-        console.log("comment post")
         if(this.onepost){
-          this.postService.getOnePostById(this.post.id)
           this.postService.getLastPosts()
+          this.postService.getOnePostById(this.post.id)
         }
         else{
           this.router.navigateByUrl('/publication/' + this.post.id)

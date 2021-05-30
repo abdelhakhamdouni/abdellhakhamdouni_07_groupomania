@@ -38,7 +38,6 @@ export class ProfilePageComponent implements OnInit {
       this.id = params['id']
       this.userService.getUserFromApi(this.id)
       this.store.select('oneUser').subscribe(user => {
-        console.log(user)
         this.profil = user as User
         
         this.imagepreview = user.avatar
@@ -68,7 +67,6 @@ export class ProfilePageComponent implements OnInit {
     let files = event.target.files;
     if (files.length === 0)
     return;
-    console.log(files[0].type)
     var mimeType = files[0].type;
     if(this.MIME_TYPES.indexOf(mimeType) === -1){
       alert('Format de l\'image non authorisé' )
@@ -118,7 +116,6 @@ export class ProfilePageComponent implements OnInit {
     e.preventDefault
     let editFullNameInput:HTMLInputElement = document.querySelector('#edit-fullName')
     let [ firstName, lastName ] = editFullNameInput.value.split(' ')
-    console.log(editFullNameInput.value.split(' '))
     this.userService.updateUSerFullName(this.profil.id, {firstName, lastName})
     this.changeMode()
 

@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
     const email = this.login.controls.email.value
     const password = this.login.controls.password.value
     this.authService.login(email, password).subscribe(data=> {
-      console.log(data)
       if(data.err){
         this.error = data.err
       }

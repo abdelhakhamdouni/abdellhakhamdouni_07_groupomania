@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUser().subscribe(user=> this.user = user)
-    this.navService.getUrl().subscribe(path => console.log(path))
+    this.navService.getUrl().subscribe(path => {})
     localStorage.getItem('theme') === 'dark' ? this.theme = "dark" : this.theme = "light"
   }
 
