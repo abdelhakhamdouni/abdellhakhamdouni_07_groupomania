@@ -18,7 +18,7 @@ import { map } from 'rxjs/operators';
 })
 export class PostService {
 
-  url: string = "https://ormes-web-service.fr/gpapp/api/posts/"
+  url: string = "http://localhost:8000/api/posts/"
 
   posts: Post[]
 
@@ -112,13 +112,13 @@ export class PostService {
   }
 
   getLastPosts():void{
-    this.http.get('https://ormes-web-service.fr/gpapp/api/last/posts').subscribe(posts => {
+    this.http.get('http://localhost:8000/api/last/posts').subscribe(posts => {
       this.store.dispatch(new LastPostAction.LoadLastPost(posts as Post[]))
     })
   }
 
   getLastLikes():void{
-    this.http.get('https://ormes-web-service.fr/gpapp/api/last/likes').subscribe(likes => {
+    this.http.get('http://localhost:8000/api/last/likes').subscribe(likes => {
       this.store.dispatch(new LastLikesAction.LoadLastLikes(likes as any[]))
     })
   }

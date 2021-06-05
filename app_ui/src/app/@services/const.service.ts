@@ -8,7 +8,7 @@ export class ConstService {
   constructor() { }
 
   getUrl(str: string){
-    return "https://ormes-web-service.fr/gpapp/api/"+str
+    return "http://localhost:8000/api/"+str
   }
 
 }

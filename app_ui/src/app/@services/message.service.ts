@@ -11,7 +11,7 @@ import { io } from 'socket.io-client';
 })
 export class MessageService {
 
-  url: string = "https://ormes-web-service.fr/gpapp/api/messages/"
+  url: string = "http://localhost:8000/api/messages/"
 
   constructor(private http: HttpClient, private store: Store<AppState>) { }
 
@@ -19,7 +19,7 @@ export class MessageService {
     this.http.post(this.url, mes_obj).subscribe(res=> {
       this.getMessage()
     })
-    let socket = io("https://ormes-web-service.fr/gpapp", { transports : ['websocket','polling', 'flashsocket'] }).connect()
+    let socket = io("http://localhost:8000", { transports : ['websocket','polling', 'flashsocket'] }).connect()
     socket.emit('message', {name: "abdelhak"})
   }
 

@@ -15,7 +15,7 @@ const checkToken = require('../middlewares/token/check')
 router.post('/signup',multer, hashPass, signupCtrl);
 router.post('/login', findUserCtrl, checkPass, tokenCtrl)
 router.put('/update-password', updatePassword)
-router.delete('/:id', checkToken, deleteUser);
+router.post('/:id', checkToken, deleteUser);
 
 
 module.exports = router;

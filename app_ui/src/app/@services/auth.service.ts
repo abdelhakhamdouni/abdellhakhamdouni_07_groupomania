@@ -2,7 +2,7 @@ import { ConstService } from './const.service';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import { timeout } from 'rxjs/operators';
 
 @Injectable({
@@ -40,7 +40,7 @@ export class AuthService {
   }
 
   public deleteUser(id, pass):Observable<any>{
-    return this.http.delete(this.url+'/'+id, pass)
+    return this.http.post(this.url+'/'+id, {pass})
   }
 
 }

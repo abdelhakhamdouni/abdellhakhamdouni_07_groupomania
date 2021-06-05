@@ -12,7 +12,7 @@ import { AppState } from '../AppState';
 })
 export class UserApiService {
 
-  url: string = "https://ormes-web-service.fr/gpapp/api/users/"
+  url: string = "http://localhost:8000/api/users/"
 
   constructor(private http: HttpClient, private store: Store<AppState>) { }
 

@@ -1,7 +1,7 @@
 <div  class="post-card-list">
     <h5 class="mt-2">Dernieres interactions</h5>
     <div class="last-likes" *ngFor="let like of _likes; let i = index">
-        <p>{{like.User.firstName}} <span class="fa fa-thumbs-up text-primary"></span> cette <a [routerLink]="['/publication/' + like.Post.id]">publication</a></p>
+        <p *ngIf="like.User && like.Post">{{like.User.firstName}} <span class="fa fa-thumbs-up text-primary"></span> cette <a [routerLink]="['/publication/' + like.Post.id]">publication</a></p>
     </div>
     <h5 class="mt-2 pt-3 border-top">Dernieres publications</h5>
     <div *ngFor="let post of _posts">

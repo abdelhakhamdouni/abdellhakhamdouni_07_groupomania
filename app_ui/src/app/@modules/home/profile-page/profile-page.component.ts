@@ -98,17 +98,20 @@ export class ProfilePageComponent implements OnInit {
     let confirm = window.confirm("Ètes vous sur de vouloir supprimer l'utilisateur ")
     if(confirm){
       this.authService.deleteUser(this.profil.id, this.confirmForm.controls.password.value).subscribe((res)=>{
-        if(res.err){
-          alert(res.err)
-        }
-        else{
-          alert(res.err)
-
           this.userService.getUsers()
           alert(`L'utilisateur ${this.profil.firstName} ${this.profil.lastName} a été supprimé`)
-          //this.router.navigateByUrl('/')
-        }
-      })
+          if(this.profil.id === this.userLogged.id){
+            alert("Nous somme désolé de vous voir quiter cette application ")
+            this.router.navigateByUrl('/auth/login')
+          }
+          else{
+            this.router.navigateByUrl('/membres')
+          }
+      },
+      (err)=>{
+        alert(err.error.err)
+      }
+      )
     }
   }
 

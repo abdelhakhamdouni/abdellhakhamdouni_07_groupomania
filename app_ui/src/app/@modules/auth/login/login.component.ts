@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   image: string = "assets/images/img-01.png"
   error:string
+  loading:boolean = false
 
   constructor(private authService: AuthService, private router:Router) { }
 
@@ -22,12 +23,14 @@ export class LoginComponent implements OnInit {
 
   submit(e){
     e.preventDefault()
+    this.loading = true
     this.error = ''
     const email = this.login.controls.email.value
     const password = this.login.controls.password.value
     this.authService.login(email, password).subscribe(data=> {
       if(data.err){
         this.error = data.err
+        this.loading = false
       }
       else{
         sessionStorage.setItem('loged', 'true')
@@ -35,6 +38,10 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('user', JSON.stringify(data.user))
         window.location.href = '/'
       }
+    },
+    ()=>{
+      this.loading = false
+      this.error = "impossible de trouver votre compte, Verifiez votre email et votre mot de passe !"
     })
   }
 

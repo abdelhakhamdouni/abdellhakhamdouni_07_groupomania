@@ -1,3 +1,4 @@
+const fsOrigin = require('fs')
 const fs = require('fs').promises
 const path = require('path')
 const Post = require('../models').Post
@@ -185,7 +186,9 @@ module.exports = {
         const post = await Post.findOne({ where: { id: postId }, include:[Comment, Likes] })
         if (post.image !== null) {
             let imagePath = path.join(__dirname, '../uploads/posts_image/' + post.image.trim())
-            await fs.unlink(imagePath)
+            if(fsOrigin.existsSync(imagePath)){
+                await fs.unlink(imagePath)
+            }
         }
         post.Comments.forEach(comment=> comment.destroy())
         post.Likes.forEach(like => like.destroy())
