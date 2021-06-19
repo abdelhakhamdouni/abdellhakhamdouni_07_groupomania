@@ -1,40 +1,46 @@
-<article [class]="'comment ' + child" [id]="'comment_'+comment.id" >
-  <div class="comment_image">
-    <img [src]="user.avatar" />
-  </div>
-  <div class="comment-body">
-    <div class="comment-header d-flex justify-content-start align-items-start">
-      <small class="font-weight-bold">
-        {{user.firstName}} {{user.lastName}}
-      </small>
-      <small class="comment-date">
-        {{comment.createdAt | mdate}}
-      </small>
-    </div>
-    <div class="comment-comment">
-      <p>{{comment.content}}</p>
-    </div>
-    <div class="comment__footer-comment" *ngIf="!child">
-      <form [formGroup]="_comment_child" (submit)="submitComment($event)">
-          <input formControlName="commentText" type="text" placeholder="Repondre au commentaire ..." name="comment" [class]="'comment_ '+comment.id" [id]="'comment_'+comment.id">
-      </form>
-  </div>
-    <div class="comment__header-action">
-      <span class="fa fa-ellipsis-h" (click)="toggleMenu('menu_comment_'+comment.id)"></span>
-      <ul class="menu" [class]="'menu_comment_' + comment.id">
-        <li>
-          <button class="btn btn-sm btn-danger" *ngIf="comment.UserId == user.id " (click)="deleteComment(comment.id)">
-            <span class="fa fa-times"></span> Supprimer
-          </button>
-        </li>
-        <li>
-          <button class="btn btn-sm btn-warning" (click)="signalerComment()">
-            <span class="fa fa-exclamation-triangle"></span> Signaler
-          </button>
-        </li>
-      </ul>
+<article [class]="'comment ' + child" [id]="'comment_'+comment.id">
+	<div class="comment_image">
+		<img [src]="user.avatar"/>
+	</div>
+	<div class="comment-body">
+		<div class="comment-header d-flex justify-content-start align-items-start">
+			<small class="font-weight-bold">
+				{{user.firstName}}
+				{{user.lastName}}
+			</small>
+			<small class="comment-date">
+				{{comment.createdAt | mdate}}
+			</small>
+		</div>
+		<div class="comment-comment">
+			<p>{{comment.content}}</p>
+		</div>
+		<div class="comment__footer-comment" *ngIf="!child">
+			<div *ngIf="onComment" class="spinner-border text-light ml-3" role="status">
+				<span class="sr-only">Loading...</span>
+			</div>
+			<form *ngIf="!onComment" [formGroup]="_comment_child" (submit)="submitComment($event)">
+				<input formcontrolname="commentText" type="text" placeholder="Repondre au commentaire ..." name="comment" [class]="'comment_ '+comment.id" [id]="'comment_'+comment.id">
+			</form>
+		</div>
+		<div class="comment__header-action">
+			<span class="fa fa-ellipsis-h" (click)="toggleMenu('menu_comment_'+comment.id)"></span>
+			<ul class="menu" [class]="'menu_comment_' + comment.id">
+				<li>
+					<button class="btn btn-sm btn-danger" *ngIf="comment.UserId == user.id || user.isAdmin" (click)="deleteComment(comment.id)">
+						<span class="fa fa-times"></span>
+						Supprimer
+					</button>
+				</li>
+				<li>
+					<button class="btn btn-sm btn-warning" (click)="signalerComment()">
+						<span class="fa fa-exclamation-triangle"></span>
+						Signaler
+					</button>
+				</li>
+			</ul>
 
 
-    </div>
-  </div>
+		</div>
+	</div>
 </article>
