@@ -29,10 +29,8 @@ module.exports = async (req, res) => {
                     let pathName = path.join(__dirname, '../uploads/users_image/' + user.image.trim())
                     await fs.unlink(pathName)
                 }
-                await user.Likes.forEach(like => like.destroy())
-                await user.Comments.forEach(comment => comment.destroy())
                 let deleted = await user.destroy()
-                deleted ? res.status(404).json({ success: "user deleted " }) : res.status(500).json({ err_handler: "DELETE_USER", err: "user introubale" })
+                deleted ? res.status(200).json({ success: "user deleted " }) : res.status(500).json({ err_handler: "DELETE_USER", err: "user introubale" })
             }
             else {
                 res.status(403).json({ err_handler: "DELETE_USER", err: "Vous n'avez pas le droit de supprimer cet utilisateur !" })

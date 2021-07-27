@@ -9,6 +9,10 @@
     box-shadow: 0 0 3px var(bg-color);
     border: 1px solid var(--border-color);
     font-size: .9em;
+    &:hover{
+        text-decoration: none;
+        box-shadow: 0 0 50px rgb(139, 139, 139);
+    }
     header{
         background-color: var(--primary);
         height: 5em;

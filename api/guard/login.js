@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
     console.log(email)
     const user = await User.findOne({where: {email}, include:[Post]})
     if (user === null) {
-        res.status(200).json({err: 'Votre email ou mot de passe sont incorrect !'});
+        res.status(400).json({err: 'Votre email ou mot de passe sont incorrect !'});
     } else {
         req.body.user = user
         next()

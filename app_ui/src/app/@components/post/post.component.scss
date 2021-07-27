@@ -119,7 +119,7 @@
         }
         img{
             width: 100%;
-            height: 15em;
+            max-height: 100vh;
             object-fit: cover;
             cursor: pointer;
         }

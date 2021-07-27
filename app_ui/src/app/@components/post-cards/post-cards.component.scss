@@ -5,12 +5,12 @@
     max-height: 10em;
     overflow: hidden;
     img{
-        height: 4em;
+        //height: 4em;
         width: 100%;
         object-fit: cover;
     }
     .content{
-        max-height: 0;
+        max-height: 25px;
         font-size: .8em;
         color: var(--text-color-gray);
         p{

@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
 
   showModal(){
     document.querySelector('input').blur()
+    let url = ``
+    this.postService.setPostIdToShare(url)
     this.modal.classList.add('show')
   }
 

@@ -2,7 +2,7 @@ const User = require("../models").User
 const randomString = require('../utils/randomString')
 const bcrypt = require('bcrypt')
 
-const salt = process.env.salt
+const salt = parseInt(process.env.SALT)
 
 module.exports = async (req, res) => {
     let email = req.body.email
@@ -11,8 +11,9 @@ module.exports = async (req, res) => {
     if(user){
         let password = randomString(8)
         bcrypt.hash(password, salt, (err, hash)=>{
-            User.update({password: hash}, {where: {email}}).then((user, error) =>{
-                if(error) {
+            console.log("================", hash)
+            user.update({password: hash}).then((user) =>{
+                if(!user) {
                     console.log(error)
                     res.status(500).json({err: "Imposible de reinitialiser votre mot de passe."})
                     return 

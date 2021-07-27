@@ -16,7 +16,6 @@ module.exports = async (req, res, next) => {
     var iv = CryptoJS.enc.Hex.parse(IV);
 
     var encrypted = CryptoJS.AES.encrypt(email, key, { iv: iv });
-console.log(encrypted.toString())
     if(encrypted){
         req.body.email = encrypted.toString()
         next()

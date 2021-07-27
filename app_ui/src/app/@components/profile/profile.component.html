@@ -1,4 +1,4 @@
-<article *ngIf="profil" class="profil">
+<a [routerLink]="['/profile/'+profil.id]" *ngIf="profil" class="profil">
     <header>
         <img [src]="profil.avatar" [alt]="'avatar '+ profil.firstName ">
     </header>
@@ -23,4 +23,4 @@
             <button class="btn btn-sm btn-success"><span class="fa fa-eye"></span></button>
         </div> -->
     </section>
-</article>
+</a>

@@ -2,12 +2,17 @@
   <app-navbar></app-navbar>
   <div class="container fixed">
     <div class="row">
+      <!-- LEFT SIDE PROFIL and USERS -->
       <div class="col-md-3 profile">
         <app-profile></app-profile>
         <app-list-users></app-list-users>
       </div>
+
+      <!-- CENTER HOLDER FOR MAIN PAGE -->
       <div class="col-md-6">
       </div>
+
+      <!-- RIGHT SIDE LIST LAST POSTS and INTERACTIONS -->
       <div class="col-md-3 lastPosts">
         <app-post-card-list></app-post-card-list>
       </div>
@@ -16,6 +21,9 @@
   <div class="container main">
     <div class="row">
       <div class="col-md-3"></div>
+
+      <!-- MAIN PAGE -->
+
       <div class="col-md-6">
         <router-outlet></router-outlet>
       </div>

@@ -15,7 +15,7 @@ const checkToken = require('../middlewares/token/check')
 /* GET users listing. */
 router.post('/signup',multer, hashPass, cryptEmail, signupCtrl);
 router.post('/login', cryptEmail, findUserCtrl, checkPass, tokenCtrl)
-router.put('/update-password', updatePassword)
+router.put('/update-password', cryptEmail, updatePassword)
 router.post('/:id', checkToken, deleteUser);
 
 
