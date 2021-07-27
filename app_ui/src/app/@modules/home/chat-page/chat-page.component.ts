@@ -32,7 +32,7 @@ export class ChatPageComponent implements OnInit {
       this.messages = messages 
     })
     this.modal.classList.remove('show')
-    let socket = io("https://ormes-web-service.fr/gpapp", { transports : ['websocket','polling', 'flashsocket'] }).connect()
+    let socket = io("http://localhost:8000", { transports : ['websocket','polling', 'flashsocket'] }).connect()
     socket.on("user connected", (listofusers)=>{
       this.usersConnected = listofusers
     })

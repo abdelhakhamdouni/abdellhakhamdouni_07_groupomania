@@ -420,3 +420,10 @@ iframe {
     opacity: 1;
   }
 }
+
+.fa-eye, .fa-eye-slash{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1em;
+}

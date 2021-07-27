@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   socket;
   constructor(private postService: PostService, private userService: UserApiService, private store: Store<AppState>) { 
-    this.socket = io("https://ormes-web-service.fr:gpapp", { transports : ['websocket','polling', 'flashsocket'] })
+    this.socket = io("http://localhost:8000", { transports : ['websocket','polling', 'flashsocket'] })
   }
 
   posts: Observable<Post[]>;

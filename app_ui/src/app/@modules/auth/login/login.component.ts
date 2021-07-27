@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   image: string = "assets/images/img-01.png"
   error:string
   loading:boolean = false
+  hide = true
 
   constructor(private authService: AuthService, private router:Router) { }
 
@@ -45,7 +46,11 @@ export class LoginComponent implements OnInit {
     })
   }
 
-
+  showPassword(e){
+    let passInput:HTMLInputElement = document.querySelector('#password')
+    passInput.getAttribute('type') == 'password' ?  passInput.setAttribute('type', 'text') : passInput.setAttribute('type', 'password')
+    this.hide = !this.hide
+  }
 
   ngOnInit(): void {
     this.authService.getLoggedUser().subscribe((bool)=>{
