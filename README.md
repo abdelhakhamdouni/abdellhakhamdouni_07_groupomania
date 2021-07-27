@@ -1,7 +1,7 @@
 Groupomania
 Un site web en guise de réseau social pour les salaries, afin d'ameliorer leur conditions de travail.
 
-Présentation: https://abdelhakhamdouni.github.io/abdelhakhamdouni_P7_groupomania
+Présentation: https://abdelhakhamdouni.github.io/abdellhakhamdouni_07_groupomania/presentation.gif
 
 Installation
 le projet et devisé en deux parties, Backend et Frontend chaque partie est independante de l'autre
