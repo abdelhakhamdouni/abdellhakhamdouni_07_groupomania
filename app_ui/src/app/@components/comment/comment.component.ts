@@ -1,3 +1,4 @@
+import { UserApiService } from './../../@services/user-api.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CommentService } from './../../@services/comment.service';
 import { PostService } from 'src/app/@services/post.service';
@@ -17,7 +18,7 @@ export class CommentComponent implements OnInit {
 
   child: string
 
-  constructor(private commentService: CommentService, private postService: PostService) { }
+  constructor(private commentService: CommentService, private postService: PostService, private userService: UserApiService) { }
 
   ngOnInit(): void {
     this.comment.CommentId != this.comment.id ? this.child = "child" : this.child = ""

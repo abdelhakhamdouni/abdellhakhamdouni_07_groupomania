@@ -15,7 +15,8 @@ import { AppState } from 'src/app/AppState';
 export class PostPageComponent implements OnInit {
 
 
-  constructor(private postService: PostService, private userService: UserApiService, private store: Store<AppState>, private activateRouter: ActivatedRoute, private router: Router) { }
+  constructor(private postService: PostService, private userService: UserApiService, 
+    private store: Store<AppState>, private activateRouter: ActivatedRoute, private router: Router) { }
 
   post: Post;
   user;
@@ -33,7 +34,6 @@ export class PostPageComponent implements OnInit {
           this.user = user
         })
         this.modal.classList.remove('show')
-
       }
       )
     })

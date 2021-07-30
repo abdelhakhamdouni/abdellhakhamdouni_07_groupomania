@@ -1,6 +1,7 @@
 const fsOrigin = require('fs')
 const fs = require('fs').promises
 const path = require('path')
+const models = require('../models');
 const Post = require('../models').Post
 const User = require('../models').User
 const Comment = require('../models').Comment
@@ -119,7 +120,8 @@ module.exports = {
                 User,
                 {
                     model: Comment,
-                    group: ['CommentId']
+                    include: [User],
+                    group: ['CommentId'],
                 },
                 Likes
             ],

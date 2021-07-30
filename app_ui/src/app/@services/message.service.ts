@@ -19,8 +19,8 @@ export class MessageService {
     this.http.post(this.url, mes_obj).subscribe(res=> {
       this.getMessage()
     })
-    let socket = io("http://localhost:8000", { transports : ['websocket','polling', 'flashsocket'] }).connect()
-    socket.emit('message', {name: "abdelhak"})
+    // let socket = io("http://localhost:8000", { transports : ['websocket','polling', 'flashsocket'] }).connect()
+    // socket.emit('message', {name: "abdelhak"})
   }
 
   getMessage(){

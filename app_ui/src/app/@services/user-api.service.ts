@@ -31,6 +31,10 @@ export class UserApiService {
     })
   }
 
+  getOneUserFromApi(id):Observable<any>{
+    return this.http.get(this.url+id)
+  }
+
   updateUSerFullName(id, obj):void{
     this.http.put(this.url + 'edit/fullName/'+id, obj).subscribe((res) =>{
       this.getUserFromApi(id)
